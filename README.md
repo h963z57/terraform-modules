@@ -1,5 +1,26 @@
 # Terraform Modules
 
+## Do not forget use remote state
+        terraform {
+
+          backend "s3" {
+            endpoint                    = "storage.yandexcloud.net"
+            force_path_style            = true
+            access_key                  = ""
+            secret_key                  = ""
+            bucket                      = ""
+            key                         = "prod/personal_project/terraform.tfstate"
+            region                      = "ru-central1-a"
+            skip_region_validation      = true
+            skip_credentials_validation = true
+          }
+
+          required_providers {
+            yandex = {
+              source = "yandex-cloud/yandex"
+            }
+          }
+        }
 
 ## VPC module yandex cloud
     module "vpc" {
