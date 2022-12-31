@@ -7,10 +7,6 @@ terraform {
   }
 }
 
-provider "yandex" {
-  zone = var.zone
-}
-
 resource "yandex_vpc_security_group" "main" {
   name        = "${var.env}-security group for ${var.projectname}"
   description = ""
