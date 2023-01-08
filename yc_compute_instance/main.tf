@@ -11,7 +11,7 @@ terraform {
 #====================== Create static ip ========================================
 
 resource "yandex_vpc_address" "addr" {
-  name = "static_ip_for-${var.projectname}"
+  name = "${var.env}-static_ip_for-${var.projectname}"
 
   external_ipv4_address {
     zone_id = var.zone
