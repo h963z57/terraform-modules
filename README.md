@@ -29,6 +29,7 @@
       network_name = "personal_projects"
       env = "prod"
       public_subnet_cidrs = ["10.0.0.0/24"]
+      vpc_static_address = ["default"]
     }
 
 ## Security group module yandex cloud
@@ -59,6 +60,7 @@
       //disk_type = ""
       vpc_id = module.vpc.vpc_public_subnet[0]
       security_group_ids = module.security_group_for_docker_engine.security_group_id
+      vpc_static_address = <data.terraform_remote_state...>
     }
 
 ## Object storage module yandex cloud
