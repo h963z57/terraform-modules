@@ -29,7 +29,6 @@
       network_name = "personal_projects"
       env = "prod"
       public_subnet_cidrs = ["10.0.0.0/24"]
-      //private_subnet_cidrs = [""]
     }
 
 ## Security group module yandex cloud
