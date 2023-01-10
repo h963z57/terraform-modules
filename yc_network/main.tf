@@ -14,12 +14,12 @@ provider "yandex" {
 #=================== Create public network=================================
 
 resource "yandex_vpc_network" "public" {
-  name = "${var.env}-network-${var.network_name}"
+  name = "${var.env}-public-${var.network_name}"
 }
 
 resource "yandex_vpc_subnet" "public" {
   count          = length(var.public_subnet_cidrs)
-  name           = "${var.env}-subnet-${count.index}"
+  name           = "${var.env}-public-${count.index}"
   zone           = var.zone
   network_id     = yandex_vpc_network.public.id
   v4_cidr_blocks = [element(var.public_subnet_cidrs, count.index)]
