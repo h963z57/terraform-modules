@@ -24,10 +24,11 @@ variable "public_subnet_cidrs" {
     #  "10.0.0.0/24"
   ]
 }
-
+/*
 variable "private_subnet_cidrs" {
   type = list(any)
   default = [
     #  "10.0.0.0/24"
   ]
 }
+*/
