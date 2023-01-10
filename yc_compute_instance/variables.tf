@@ -65,3 +65,8 @@ variable "security_group_ids" {
   type    = string
   default = ""
 }
+
+variable "vpc_static_address" {
+  type = string
+  default = ""
+}

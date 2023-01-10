@@ -25,6 +25,17 @@ resource "yandex_vpc_subnet" "public" {
   v4_cidr_blocks = [element(var.public_subnet_cidrs, count.index)]
 }
 
+#====================== Create static ips ==================================
+
+resource "yandex_vpc_address" "addr" {
+  count = length(var.vpc_static_address)
+  name  = "${var.env}-static_ip-${count.index}"
+
+  external_ipv4_address {
+    zone_id = var.zone
+  }
+}
+
 #=================== Create private network=================================
 /*
 resource "yandex_vpc_network" "private" {

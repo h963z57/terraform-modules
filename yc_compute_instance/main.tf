@@ -7,17 +7,6 @@ terraform {
   }
 }
 
-
-#====================== Create static ip ========================================
-
-resource "yandex_vpc_address" "addr" {
-  name = "${var.env}-static_ip_for-${var.projectname}"
-
-  external_ipv4_address {
-    zone_id = var.zone
-  }
-}
-
 #====================== Create compute instance ==================================
 
 resource "yandex_compute_instance" "vm-1" {
@@ -43,7 +32,7 @@ resource "yandex_compute_instance" "vm-1" {
   network_interface {
     subnet_id          = var.vpc_id
     nat                = true
-    nat_ip_address     = yandex_vpc_address.addr.external_ipv4_address.0.address
+    nat_ip_address     = var.vpc_static_address
     security_group_ids = [var.security_group_ids]
   }
 
