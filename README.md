@@ -65,13 +65,13 @@
 
 ## Object storage module yandex cloud
     module "s3" {
-      source                                                              = "git@github.com:h963z57/terraform_modules.git//yc_storage_bucket"
-      env                                                                 = "prod"
-      prefix                                                              = "Username"
-      bucket_name                                                         = "Name"
-      //acl                                                                 = "private"
-      max_size                                                            = "107374182400"
-      default_storage_class                                               = "ICE"
+      source                = "git@github.com:h963z57/terraform_modules.git//yc_storage_bucket"
+      env                   = "prod"
+      prefix                = "Username"
+      bucket_name           = "Name"
+      //acl                   = "private"
+      max_size              = "107374182400"
+      default_storage_class = "ICE"
       //status_lifecycle_rule_transition_current_version_to_cold_storage    = "false"
       //days_lifecycle_rule_transition_current_version_to_cold_storage      = "360"
       //status_lifecycle_rule_expiration_current_version                    = "false"
