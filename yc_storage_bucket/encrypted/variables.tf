@@ -28,6 +28,16 @@ variable "default_storage_class" {
   default = "STANDARD" # COLD ICE
 }
 
+variable "anonymous_access_flags_read" {
+  type    = bool
+  default = false
+}
+
+variable "anonymous_access_flags_list" {
+  type    = bool
+  default = false
+}
+
 variable "status_lifecycle_rule_transition_current_version_to_cold_storage" {
   type = bool
   default = "false"
