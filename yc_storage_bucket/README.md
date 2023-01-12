@@ -1,6 +1,6 @@
 ## Object storage module yandex cloud (unencrypted)
     module "s3" {
-      source                = "git@github.com:h963z57/terraform_modules.git//yc_storage_bucket/encrypted"
+      source                = "git@github.com:h963z57/terraform_modules.git//yc_storage_bucket/unencrypted"
       env                   = "prod"
       prefix                = "Username"
       bucket_name           = "Name"
@@ -22,7 +22,7 @@
 
 ## Object storage module yandex cloud (encrypted)
     module "s3" {
-      source                = "git@github.com:h963z57/terraform_modules.git//yc_storage_bucket/unencrypted"
+      source                = "git@github.com:h963z57/terraform_modules.git//yc_storage_bucket/encrypted"
       env                   = "prod"
       prefix                = "Username"
       bucket_name           = "Name"
