@@ -70,3 +70,8 @@ variable "vpc_static_address" {
   type = string
   default = ""
 }
+
+variable "metadata" {
+  type = string
+  default = ".ssh/id_ed25519.pub"
+}
