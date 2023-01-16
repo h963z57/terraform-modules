@@ -4,5 +4,5 @@ output "internal_ip_address_vm" {
 }
 
 output "external_ipv4_address_vm" {
-  value = var.vpc_static_address
+  value = yandex_compute_instance.vm-1.network_interface.0.nat_ip_address
 }
