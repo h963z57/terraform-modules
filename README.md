@@ -61,6 +61,7 @@
       vpc_id                    = <data.terraform_remote_state...>
       security_group_ids        = <data.terraform_remote_state...>
       vpc_static_address        = <data.terraform_remote_state...>
+      //metadata                  = ".ssh/id_ed25519.pub"
     }
 
 ## Object storage module yandex cloud (encrypted)
