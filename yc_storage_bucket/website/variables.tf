@@ -28,6 +28,11 @@ variable "default_storage_class" {
   default = "STANDARD" # COLD ICE
 }
 
+variable "force_destroy" {
+  type    = bool
+  default = true
+}
+
 variable "index_document" {
   type = string
   default = "index.html"

@@ -18,6 +18,7 @@ resource "yandex_storage_bucket" "main" {
   acl                   = var.acl
   max_size              = var.max_size
   default_storage_class = var.default_storage_class
+  force_destroy         = var.force_destroy
 
   anonymous_access_flags {
     read = var.anonymous_access_flags_read

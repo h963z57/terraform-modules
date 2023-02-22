@@ -28,6 +28,11 @@ variable "default_storage_class" {
   default = "STANDARD" # COLD ICE
 }
 
+variable "force_destroy" {
+  type    = bool
+  default = false
+}
+
 variable "anonymous_access_flags_read" {
   type    = bool
   default = false
