@@ -7,6 +7,7 @@
       //acl                   = "private"
       max_size              = "107374182400"
       default_storage_class = "STANDARD" # ICE COLD
+      //force_destroy         = false
       //anonymous_access_flags_read = "false"
       //anonymous_access_flags_list = "false"
       //status_lifecycle_rule_transition_current_version_to_cold_storage    = "false"
@@ -29,6 +30,7 @@
       //acl                   = "private"
       max_size              = "107374182400"
       default_storage_class = "STANDARD" # ICE COLD
+      //force_destroy         = false
       //anonymous_access_flags_read = "false"
       //anonymous_access_flags_list = "false"
       //status_lifecycle_rule_transition_current_version_to_cold_storage    = "false"
@@ -51,6 +53,7 @@
       //acl                   = "public-read"
       max_size              = "107374182400"
       default_storage_class = "STANDARD" # ICE COLD
+      //force_destroy         = false
       //index_document        = "index.html"
       //error_document        = ""
       //anonymous_access_flags_read = "true"
