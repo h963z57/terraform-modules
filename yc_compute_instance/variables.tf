@@ -55,6 +55,21 @@ variable "disk_type" {
   default = "network-hdd"
 }
 
+variable "secondary_disk_id" {
+  type = string
+  default = ""
+}
+
+variable "secondary_disk_auto_delete" {
+  type = bool
+  default = false
+}
+
+variable "secondary_disk_mode" {
+  type = string
+  default = "READ_WRITE"
+}
+
 #--------------------- Network params -----------------------#
 variable "vpc_id" {
   type    = string
@@ -77,6 +92,6 @@ variable "metadata" {
 }
 
 variable "preemptible" {
-  type = bool
-  dedefault = false  
+  type    = bool
+  default = false  
 }
