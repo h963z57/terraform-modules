@@ -48,7 +48,7 @@
     module "compute_instance" {
       source = "git@github.com:h963z57/terraform_modules.git//yc_compute_instance"
       //zone = ""
-      projectname = "docker-engine"
+      projectname = "NAME"
       env = "prod"
       allow_stopping_for_update = true
       //platform_id               = ""
@@ -66,6 +66,16 @@
       vpc_static_address        = <data.terraform_remote_state...>
       //metadata                  = ".ssh/id_ed25519.pub"
       //preemptible               = false
+    }
+
+## Compute disk module yandex cloud
+    module "compute_disk" {
+      source = "git@github.com:h963z57/terraform-modules.git//yc_compute_disk"
+      env = "prod"
+      disk_name = "NAME"
+      //type = "network-hdd"
+      size = "10"
+      //block_size = "4096"
     }
 
 ## Object storage module yandex cloud (encrypted)
