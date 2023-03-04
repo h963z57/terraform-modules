@@ -40,4 +40,9 @@ resource "yandex_compute_instance" "vm-1" {
     //ssh-keys = "debian:${file(".ssh/id_ed25519.pub")}"
     ssh-keys = "debian:${file(var.metadata)}"
   }
+
+  scheduling_policy {
+    preemptible = var.preemptible
+  }
+
 }
