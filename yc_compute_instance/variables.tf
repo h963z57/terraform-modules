@@ -56,8 +56,8 @@ variable "disk_type" {
 }
 
 variable "secondary_disk_id" {
-  type = string
-  default = ""
+  type = list
+  default = []
 }
 
 variable "secondary_disk_auto_delete" {
@@ -78,7 +78,7 @@ variable "vpc_id" {
 
 variable "security_group_ids" {
   type    = string
-  default = ""
+  //default = ""
 }
 
 variable "vpc_static_address" {

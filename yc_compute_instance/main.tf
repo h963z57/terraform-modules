@@ -29,10 +29,13 @@ resource "yandex_compute_instance" "vm-1" {
     }
   }
 
-  secondary_disk {
-    disk_id = var.secondary_disk_id
-    auto_delete = var.secondary_disk_auto_delete
-    mode = var.secondary_disk_mode
+  dynamic "secondary_disk" {
+    for_each = var.secondary_disk_id
+    content {
+      disk_id = var.secondary_disk_id
+      auto_delete = var.secondary_disk_auto_delete
+      mode = var.secondary_disk_mode
+    }
   }
 
   network_interface {
