@@ -23,7 +23,7 @@ variable "allow_ingress_ports_tcp" {
   default = ["-1"]
 }
 
-variable "allow_egress_ports_tcp" {
+variable "allow_egress_ports" {
   type = list(any)
   default = ["-1"]
 }
