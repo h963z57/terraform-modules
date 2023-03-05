@@ -26,10 +26,10 @@
     module "vpc" {
       source              = "git@github.com:h963z57/terraform_modules.git//yc_network"
       //zone                = ""
-      network_name        = "personal_projects"
+      network_name        = "NAME"
       env                 = "prod"
       public_subnet_cidrs = ["10.0.0.0/24"]
-      vpc_static_address  = ["default"]
+      //vpc_static_address  = [""]
     }
 
 ## Security group module yandex cloud
@@ -37,8 +37,8 @@
       source                  = "git@github.com:h963z57/terraform_modules.git//yc_security_group"
       //zone                    = ""
       env                     = "prod"
-      projectname = "docker_engine"
-      network                 = module.vpc.vpc_public_network
+      projectname             = "NAME"
+      network                 = <data.terraform_remote_state...>
       allow_ingress_ports_tcp =  ["-1"]
       //allow_egress_ports      = ["-1"]
       ingress_rules_advanced = [

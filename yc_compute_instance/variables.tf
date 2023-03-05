@@ -56,7 +56,7 @@ variable "disk_type" {
 }
 
 variable "secondary_disk_id" {
-  type = list
+  type = list(string)
   default = []
 }
 
