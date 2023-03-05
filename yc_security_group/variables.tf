@@ -18,20 +18,48 @@ variable "network" {
   default = ""
 }
 
-variable "allow_ingress_ports_tcp" {
-  description = "List of Ports to open server"
-  type        = list(any)
-  default     = ["-1"]
+variable "ingress_rules" {
+  type = list(object({
+    protocol = string
+    description = string
+    v4_cidr_blocks = list(string)
+    port = number
+  }))
+  default = [
+    {
+      protocol = "TCP"
+      description = "Auto generated rule by terraform"
+      v4_cidr_blocks = ["0.0.0.0/0"]
+      port = "-1"
+    },
+    {
+      protocol = "UDP"
+      description = "Auto generated rule by terraform"
+      v4_cidr_blocks = ["0.0.0.0/0"]
+      port = "-1"
+    }
+  ]
 }
 
-variable "allow_ingress_ports_udp" {
-  description = "List of Ports to open server"
-  type        = list(any)
-  default     = ["-1"]
-}
-
-variable "allow_egress_ports" {
-  description = "List of Ports to open server"
-  type        = list(any)
-  default     = ["-1"]
+variable "egress_rules" {
+  type = list(object({
+    protocol = string
+    description = string
+    v4_cidr_blocks = list(string)
+    port = number
+  }))
+  default = [
+    {
+      protocol = "TCP"
+      description = "Auto generated rule by terraform"
+      v4_cidr_blocks = ["0.0.0.0/0"]
+      port = "-1"
+    },
+    {
+      protocol = "UDP"
+      description = "Auto generated rule by terraform"
+      v4_cidr_blocks = ["0.0.0.0/0"]
+      port = "-1"
+    }
+  ]
 }
