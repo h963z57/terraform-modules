@@ -18,7 +18,17 @@ variable "network" {
   default = ""
 }
 
-variable "ingress_rules" {
+variable "allow_ingress_ports_tcp" {
+  type = list(any)
+  default = ["-1"]
+}
+
+variable "allow_egress_ports_tcp" {
+  type = list(any)
+  default = ["-1"]
+}
+
+variable "ingress_rules_advanced" {
   type = list(object({
     protocol = string
     description = string
@@ -26,22 +36,22 @@ variable "ingress_rules" {
     port = number
   }))
   default = [
-    {
-      protocol = "TCP"
-      description = "Auto generated rule by terraform"
-      v4_cidr_blocks = ["0.0.0.0/0"]
-      port = "-1"
-    },
-    {
-      protocol = "UDP"
-      description = "Auto generated rule by terraform"
-      v4_cidr_blocks = ["0.0.0.0/0"]
-      port = "-1"
-    }
+    # {
+    #   protocol = "TCP"
+    #   description = "Auto generated rule by terraform (advanced mode)"
+    #   v4_cidr_blocks = ["0.0.0.0/0"]
+    #   port = "-1"
+    # },
+    # {
+    #   protocol = "UDP"
+    #   description = "Auto generated rule by terraform (advanced mode)"
+    #   v4_cidr_blocks = ["0.0.0.0/0"]
+    #   port = "-1"
+    # }
   ]
 }
 
-variable "egress_rules" {
+variable "egress_rules_advanced" {
   type = list(object({
     protocol = string
     description = string
@@ -49,17 +59,17 @@ variable "egress_rules" {
     port = number
   }))
   default = [
-    {
-      protocol = "TCP"
-      description = "Auto generated rule by terraform"
-      v4_cidr_blocks = ["0.0.0.0/0"]
-      port = "-1"
-    },
-    {
-      protocol = "UDP"
-      description = "Auto generated rule by terraform"
-      v4_cidr_blocks = ["0.0.0.0/0"]
-      port = "-1"
-    }
+    # {
+    #   protocol = "TCP"
+    #   description = "Auto generated rule by terraform"
+    #   v4_cidr_blocks = ["0.0.0.0/0"]
+    #   port = "-1"
+    # },
+    # {
+    #   protocol = "UDP"
+    #   description = "Auto generated rule by terraform"
+    #   v4_cidr_blocks = ["0.0.0.0/0"]
+    #   port = "-1"
+    # }
   ]
 }
