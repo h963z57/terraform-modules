@@ -40,8 +40,35 @@
       projectname = "docker_engine"
       network                 = module.vpc.vpc_public_network
       allow_ingress_ports_tcp =  ["-1"]
-      allow_ingress_ports_udp =  ["-1"]
       //allow_egress_ports      = ["-1"]
+      ingress_rules_advanced = [
+          {
+          protocol = "TCP"
+          description = "Auto generated rule by terraform (advanced mode)"
+          v4_cidr_blocks = ["0.0.0.0/0"]
+          port = "-1"
+        },
+        {
+          protocol = "UDP"
+          description = "Auto generated rule by terraform (advanced mode)"
+          v4_cidr_blocks = ["0.0.0.0/0"]
+          port = "-1"
+        }
+      ]
+      egress_rules_advanced = [
+          {
+          protocol = "TCP"
+          description = "Auto generated rule by terraform"
+          v4_cidr_blocks = ["0.0.0.0/0"]
+          port = "-1"
+        },
+        {
+          protocol = "UDP"
+          description = "Auto generated rule by terraform"
+          v4_cidr_blocks = ["0.0.0.0/0"]
+          port = "-1"
+        }
+      ]
     }
 
 ## Compute instance module yandex cloud
@@ -58,7 +85,7 @@
       //image_id                  = ""
       //disk_size                 = "30"
       //disk_type                 = ""
-      secondary_disk_id          = ""
+      //secondary_disk_id          = [""]
       //secondary_disk_auto_delete = false
       //secondary_disk_mode       = "READ_WRITE"
       vpc_id                    = <data.terraform_remote_state...>
