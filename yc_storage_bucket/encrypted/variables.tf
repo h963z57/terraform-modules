@@ -33,11 +33,6 @@ variable "force_destroy" {
   default = false
 }
 
-variable "default_storage_class" {
-  type    = bool
-  default = false
-}
-
 variable "anonymous_access_flags_read" {
   type    = bool
   default = false
