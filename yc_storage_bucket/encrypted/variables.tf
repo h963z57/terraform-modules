@@ -28,6 +28,11 @@ variable "default_storage_class" {
   default = "STANDARD" # COLD ICE
 }
 
+variable "force_destroy" {
+  type    = bool
+  default = false
+}
+
 variable "default_storage_class" {
   type    = bool
   default = false
