@@ -1,4 +1,4 @@
-terraform {  
+terraform {
   required_providers {
     aws = {
       source = "hashicorp/aws"
@@ -57,7 +57,7 @@ resource "aws_route_table_association" "public_routes" {
 
 
 resource "aws_eip" "nat" {
-  count   = length(var.private_subnet_cidrs)
+  count  = length(var.private_subnet_cidrs)
   domain = "vpc"
   tags = {
     Name = "${var.env}-nat-gw-${count.index + 1}"

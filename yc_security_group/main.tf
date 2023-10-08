@@ -12,7 +12,7 @@ resource "yandex_vpc_security_group" "main" {
   description = ""
   network_id  = var.network
 
-#================== Simple rules ======================  
+  #================== Simple rules ======================  
 
   dynamic "ingress" {
     for_each = var.allow_ingress_ports_tcp
@@ -34,7 +34,7 @@ resource "yandex_vpc_security_group" "main" {
     }
   }
 
-#================= Advanced rules ====================
+  #================= Advanced rules ====================
 
   dynamic "ingress" {
     for_each = var.ingress_rules_advanced

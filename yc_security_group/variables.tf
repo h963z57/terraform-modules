@@ -19,21 +19,21 @@ variable "network" {
 }
 
 variable "allow_ingress_ports_tcp" {
-  type = list(any)
+  type    = list(any)
   default = ["-1"]
 }
 
 variable "allow_egress_ports" {
-  type = list(any)
+  type    = list(any)
   default = ["-1"]
 }
 
 variable "ingress_rules_advanced" {
   type = list(object({
-    protocol = string
-    description = string
+    protocol       = string
+    description    = string
     v4_cidr_blocks = list(string)
-    port = number
+    port           = number
   }))
   default = [
     # {
@@ -53,10 +53,10 @@ variable "ingress_rules_advanced" {
 
 variable "egress_rules_advanced" {
   type = list(object({
-    protocol = string
-    description = string
+    protocol       = string
+    description    = string
     v4_cidr_blocks = list(string)
-    port = number
+    port           = number
   }))
   default = [
     # {

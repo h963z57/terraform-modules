@@ -32,9 +32,9 @@ resource "yandex_compute_instance" "vm-1" {
   dynamic "secondary_disk" {
     for_each = var.secondary_disk_id
     content {
-      disk_id = secondary_disk.value
+      disk_id     = secondary_disk.value
       auto_delete = var.secondary_disk_auto_delete
-      mode = var.secondary_disk_mode
+      mode        = var.secondary_disk_mode
     }
   }
 

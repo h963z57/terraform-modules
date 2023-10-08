@@ -10,65 +10,42 @@ terraform {
 resource "aws_s3_bucket" "module" {
   bucket        = "${var.prefix}-${var.env}-${var.bucket_name}"
   force_destroy = var.force_destroy
-
-  lifecycle_rule {
-    id      = "abortmultiparts"
-    prefix  = ""
-    enabled = true
-    abort_incomplete_multipart_upload_days = 7
-  }
-
-  lifecycle_rule {
-    id      = "Transition current version to GLACIER storage"
-    prefix  = ""
-    enabled = var.status_lifecycle_rule_transition_current_version_to_cold_storage
-
-    transition {
-      days = var.days_lifecycle_rule_transition_current_version_to_cold_storage
-      storage_class = "GLACIER"
-    } 
-  }
-
-  lifecycle_rule {
-    id      = "Expiration current version"
-    prefix  = ""
-    enabled = var.status_lifecycle_rule_expiration_current_version
-
-    expiration  {
-      days = var.days_lifecycle_rule_expiration_current_version_to_cold_storage
-    } 
-  }
- 
-  lifecycle_rule {
-    id      = "Transition noncurrent version to GLACIER storage"
-    prefix  = ""
-    enabled = var.status_lifecycle_rule_transition_noncurrent_version_to_cold_storage
-
-    noncurrent_version_transition {
-      days = var.days_lifecycle_rule_transition_noncurrent_version_to_cold_storage
-      storage_class = "GLACIER"
-    }
-  }
-  
-  lifecycle_rule {
-    id      = "Expiration noncurrent version"
-    prefix  = ""
-    enabled = var.status_lifecycle_rule_expiration_noncurrent_version
-
-    noncurrent_version_expiration {
-      days = var.days_lifecycle_rule_expiration_noncurrent_version_to_cold_storage
-    }
-  }
 }
 
-# resource "aws_s3_bucket_lifecycle_configuration" "module" {
+# resource "aws_s3_bucket_acl" "module" {
 #   bucket = aws_s3_bucket.module.id
-
+#   acl    = var.acl
 # }
 
-
-resource "aws_s3_bucket_acl" "module" {
+resource "aws_s3_bucket_versioning" "module" {
   bucket = aws_s3_bucket.module.id
-  acl    = var.acl
+  versioning_configuration {
+    status = var.versioning
+  }
 }
+
+resource "aws_s3_bucket_policy" "allow_access_from_another_account" {
+  count = var.status_bucket_policy ? 1 : 0
+  bucket = aws_s3_bucket.module.id
+  policy = "${file("bucket_policy/${var.env}/${var.bucket_name}/policy.json")}"
+}
+
+resource "aws_kms_key" "module" {
+  count = var.status_bucket_encryption ? 1 : 0 
+  description             = "Key for ${var.prefix}-${var.env}-${var.bucket_name} bucket"
+  deletion_window_in_days = 10
+}
+
+resource "aws_s3_bucket_server_side_encryption_configuration" "module" {
+  bucket = aws_s3_bucket.module.id
+
+  rule {
+    apply_server_side_encryption_by_default {
+      
+      kms_master_key_id = var.status_bucket_encryption == false ? "" : "aws_kms_key.module.arn"
+      sse_algorithm     = var.sse_algorithm
+    }
+  }
+}
+
 

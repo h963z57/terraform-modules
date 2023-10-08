@@ -56,17 +56,17 @@ variable "disk_type" {
 }
 
 variable "secondary_disk_id" {
-  type = list(string)
+  type    = list(string)
   default = []
 }
 
 variable "secondary_disk_auto_delete" {
-  type = bool
+  type    = bool
   default = false
 }
 
 variable "secondary_disk_mode" {
-  type = string
+  type    = string
   default = "READ_WRITE"
 }
 
@@ -77,21 +77,21 @@ variable "vpc_id" {
 }
 
 variable "security_group_ids" {
-  type    = string
+  type = string
   //default = ""
 }
 
 variable "vpc_static_address" {
-  type = string
+  type    = string
   default = ""
 }
 
 variable "metadata" {
-  type = string
+  type    = string
   default = ".ssh/id_ed25519.pub"
 }
 
 variable "preemptible" {
   type    = bool
-  default = false  
+  default = false
 }

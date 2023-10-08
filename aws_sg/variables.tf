@@ -13,9 +13,9 @@ variable "projectname" {
   default = "change me"
 }
 
-variable description {
-  type        = string
-  default     = "test"
+variable "description" {
+  type    = string
+  default = "test"
 }
 
 variable "vpc_id" {
@@ -24,21 +24,21 @@ variable "vpc_id" {
 }
 
 variable "allow_ingress_ports_tcp" {
-  type = list(any)
+  type    = list(any)
   default = ["0"]
 }
 
 variable "allow_egress_ports" {
-  type = list(any)
+  type    = list(any)
   default = ["0"]
 }
 
 variable "ingress_rules_advanced" {
   type = list(object({
-    protocol = string
+    protocol    = string
     description = string
     cidr_blocks = list(string)
-    port = number
+    port        = number
   }))
   default = [
     # {
@@ -58,10 +58,10 @@ variable "ingress_rules_advanced" {
 
 variable "egress_rules_advanced" {
   type = list(object({
-    protocol = string
+    protocol    = string
     description = string
     cidr_blocks = list(string)
-    port = number
+    port        = number
   }))
   default = [
     # {
