@@ -38,11 +38,11 @@ resource "aws_kms_key" "module" {
 
 resource "aws_s3_bucket_server_side_encryption_configuration" "module" {
   bucket = aws_s3_bucket.module.id
-
+  count = var.status_bucket_encryption ? 1 : 0
   rule {
     apply_server_side_encryption_by_default {
       
-      kms_master_key_id = var.status_bucket_encryption == false ? "" : "aws_kms_key.module.arn"
+      kms_master_key_id = aws_kms_key.module[0].arn
       sse_algorithm     = var.sse_algorithm
     }
   }

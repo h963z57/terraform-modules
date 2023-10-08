@@ -7,7 +7,7 @@
       bucket_name           = "Name"
       //acl                   = "private"
       //status_bucket_encryption = false
-      //sse_algorithm       = aws:kms
+      //sse_algorithm       = "aws:kms"
       //force_destroy         = false
       //status_bucket_policy = false
       //lifecycle_transition_rule = [
