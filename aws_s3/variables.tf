@@ -19,12 +19,12 @@ variable "acl" {
 }
 
 variable "status_bucket_encryption" {
-  type = bool
+  type    = bool
   default = false
 }
 
 variable "sse_algorithm" {
-  type = string
+  type    = string
   default = "aws:kms"
 }
 
@@ -54,7 +54,7 @@ variable "force_destroy" {
 # }
 
 variable "status_bucket_policy" {
-  type = bool
+  type    = bool
   default = false
 }
 
