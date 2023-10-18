@@ -28,6 +28,16 @@ variable "user_data" {
     default = "user_data.sh"
 }
 
+variable "volume_size" {
+    type = number
+    default = 16
+}
+
+variable "volume_type" {
+    type = string
+    default = "gp2"
+}
+
 variable "core_count" {
     type = number
     default = 1
