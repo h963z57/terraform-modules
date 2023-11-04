@@ -20,3 +20,10 @@ resource "aws_ebs_volume" "module" {
     Owner = var.owner
   }
 }
+
+resource "aws_volume_attachment" "module" {
+  count = var.attach_state ? 1 : 0
+  device_name = var.device_name
+  volume_id   = aws_ebs_volume.module.id
+  instance_id = var.instance_id
+}

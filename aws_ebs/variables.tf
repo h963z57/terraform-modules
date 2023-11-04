@@ -37,3 +37,18 @@ variable "owner" {
   type    = string
   default = "nobody"
 }
+
+variable "attach_state" {
+  type    = bool
+  default = false
+}
+
+variable "device_name" {
+  type    = string
+  default = ""
+}
+
+variable "instance_id" {
+  type    = string
+  default = ""
+}

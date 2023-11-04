@@ -38,15 +38,15 @@ variable "volume_type" {
     default = "gp2"
 }
 
-variable "core_count" {
-    type = number
-    default = 1
-}
+# variable "core_count" {
+#     type = number
+#     default = 1
+# }
 
-variable "threads_per_core" {
-    type = number
-    default = 1
-}
+# variable "threads_per_core" {
+#     type = number
+#     default = 1
+# }
 
 variable "name" {
     type = string
