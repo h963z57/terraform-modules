@@ -14,8 +14,8 @@ variable "type" {
 }
 
 variable "zone" {
-  type       = string
-  default    = "ru-central1-a"
+  type    = string
+  default = "ru-central1-a"
 }
 
 variable "size" {

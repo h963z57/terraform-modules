@@ -27,9 +27,9 @@ variable "public_subnet_cidrs" {
 
 variable "vpc_static_address" {
   type = list(any)
-  default = [ 
+  default = [
     # "change me"
-   ]
+  ]
 }
 
 /*
