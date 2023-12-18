@@ -28,6 +28,11 @@ variable "allow_ingress_ports_tcp" {
   default = ["0"]
 }
 
+variable "allow_ingress_ports_udp" {
+  type    = list(any)
+  default = ["0"]
+}
+
 variable "allow_egress_ports" {
   type    = list(any)
   default = ["0"]
