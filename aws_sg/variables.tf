@@ -25,12 +25,12 @@ variable "vpc_id" {
 
 variable "allow_ingress_ports_tcp" {
   type    = list(any)
-  default = ["0"]
+  default = []
 }
 
 variable "allow_ingress_ports_udp" {
   type    = list(any)
-  default = ["0"]
+  default = []
 }
 
 variable "allow_egress_ports" {
