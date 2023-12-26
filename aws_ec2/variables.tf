@@ -48,9 +48,10 @@ variable "volume_type" {
 #     default = 1
 # }
 
-variable "name" {
-    type = string
-    default = "cnage-me"
+variable "names" {
+  description = "List of names"
+  type        = list(string)
+  default     = []
 }
 
 variable "public_key" {
