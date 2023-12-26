@@ -8,9 +8,9 @@ variable "prefix" {
   default = "8g9fdjv"
 }
 
-variable "bucket_name" {
-  type    = string
-  default = "change-me"
+variable "bucket_names" {
+  type        = list(string)
+  default     = []
 }
 
 variable "acl" {

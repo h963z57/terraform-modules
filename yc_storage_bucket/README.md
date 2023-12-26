@@ -3,7 +3,7 @@
       source                = "git@github.com:h963z57/terraform_modules.git//yc_storage_bucket/unencrypted"
       env                   = "prod"
       prefix                = "Username"
-      bucket_name           = "Name"
+      bucket_name           = ["name", "name-2-if-need"]
       //acl                   = "private"
       max_size              = "107374182400"
       default_storage_class = "STANDARD" # ICE COLD
@@ -26,7 +26,7 @@
       source                = "git@github.com:h963z57/terraform_modules.git//yc_storage_bucket/encrypted"
       env                   = "prod"
       prefix                = "Username"
-      bucket_name           = "Name"
+      bucket_name           = ["name", "name-2-if-need"]
       //acl                   = "private"
       max_size              = "107374182400"
       default_storage_class = "STANDARD" # ICE COLD
@@ -49,7 +49,7 @@
       source                = "git@github.com:h963z57/terraform_modules.git//yc_storage_bucket/website"
       env                   = "prod"
       prefix                = "Username"
-      bucket_name           = "Name"
+      bucket_name           = ["name", "name-2-if-need"]
       //acl                   = "public-read"
       max_size              = "107374182400"
       default_storage_class = "STANDARD" # ICE COLD

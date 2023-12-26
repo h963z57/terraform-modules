@@ -8,13 +8,15 @@ terraform {
 }
 
 resource "null_resource" "command" {
+  count   = length(var.bucket_names)
   provisioner "local-exec" {
-    command = "mkdir -p bucket_policy && mkdir -p bucket_policy/${var.env} && mkdir -p bucket_policy/${var.env}/${var.bucket_name} && touch bucket_policy/${var.env}/${var.bucket_name}/policy.json"
+    command = "mkdir -p bucket_policy && mkdir -p bucket_policy/${var.env} && mkdir -p bucket_policy/${var.env}/${var.bucket_names[count.index]} && touch bucket_policy/${var.env}/${var.bucket_names[count.index]}/policy.json"
   }
 }
 
 resource "yandex_storage_bucket" "main" {
-  bucket                = "${var.prefix}-${var.env}-${var.bucket_name}"
+  count                 = length(var.bucket_names)
+  bucket                = "${var.prefix}-${var.env}-${var.bucket_names[count.index]}"
   acl                   = var.acl
   max_size              = var.max_size
   default_storage_class = var.default_storage_class
@@ -77,7 +79,7 @@ resource "yandex_storage_bucket" "main" {
   versioning {
     enabled = var.versioning
   }
-  policy = "${file("bucket_policy/${var.env}/${var.bucket_name}/policy.json")}"
+  policy = "${file("bucket_policy/${var.env}/${var.bucket_names[count.index]}/policy.json")}"
   depends_on = [null_resource.command]
 }
 
