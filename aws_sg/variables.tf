@@ -1,7 +1,7 @@
-variable "zone" {
-  type    = string
-  default = "ru-central1-a"
-}
+# variable "zone" {
+#   type    = string
+#   default = "ru-central1-a"
+# }
 
 variable "env" {
   type    = string

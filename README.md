@@ -1,108 +1,91 @@
 # Terraform Modules
 
 ## Do not forget use remote state
-        terraform {
 
-          backend "s3" {
-            endpoint                    = "storage.yandexcloud.net"
-            force_path_style            = true
-            access_key                  = ""
-            secret_key                  = ""
-            bucket                      = ""
-            key                         = "prod/personal_project/terraform.tfstate"
-            region                      = "ru-central1-a"
-            skip_region_validation      = true
-            skip_credentials_validation = true
-          }
+### YC (need terraform 1.6.5 and higher)
+#### Environments
+```bash
+export AWS_ACCESS_KEY_ID=<access_key>
+export AWS_SECRET_ACCESS_KEY=<secret_key>
 
-          required_providers {
-            yandex = {
-              source = "yandex-cloud/yandex"
-            }
-          }
-        }
+export YC_STORAGE_ACCESS_KEY=<access_key>
+export YC_STORAGE_SECRET_KEY=<secret_key>
 
-## VPC module yandex cloud
-    module "vpc" {
-      source              = "git@github.com:h963z57/terraform_modules.git//yc_network"
-      //zone                = ""
-      network_name        = "NAME"
-      env                 = "prod"
-      public_subnet_cidrs = ["10.0.0.0/24"]
-      //vpc_static_address  = [""]
+# Before export configure yc cli
+export YC_TOKEN=$(yc iam create-token)
+export YC_CLOUD_ID=$(yc config get cloud-id)
+export YC_FOLDER_ID=$(yc config get folder-id)
+
+```
+```tf
+terraform {
+  required_providers {
+    yandex = {
+      source = "yandex-cloud/yandex"
     }
+  }
 
-## Security group module yandex cloud
-    module "security_group_for_docker_engine" {
-      source                  = "git@github.com:h963z57/terraform_modules.git//yc_security_group"
-      //zone                    = ""
-      env                     = "prod"
-      projectname             = "NAME"
-      network                 = <data.terraform_remote_state...>
-      allow_ingress_ports_tcp =  ["-1"]
-      //allow_egress_ports      = ["-1"]
-      //ingress_rules_advanced = [
-      //  {protocol = "TCP", description = "Auto generated rule by terraform (advanced mode)", v4_cidr_blocks = ["0.0.0.0/0"], port = "-1"},
-      //  {protocol = "UDP", description = "Auto generated rule by terraform (advanced mode)", v4_cidr_blocks = ["0.0.0.0/0"], port = "-1"}
-      //]
-      //egress_rules_advanced = [
-      //  {protocol = "TCP", description = "Auto generated rule by terraform (advanced mode)", v4_cidr_blocks = ["0.0.0.0/0"], port = "-1"},
-      //  {protocol = "UDP", description = "Auto generated rule by terraform (advanced mode)", v4_cidr_blocks = ["0.0.0.0/0"], port = "-1"}
-      //]
+  backend "s3" {
+    endpoints = {
+      s3 = "https://storage.yandexcloud.net"
     }
+    bucket = "<bucket-name>"
+    region = "ru-central1"
+    key    = "<path/to/terraform.tfstate>"
 
-## Compute instance module yandex cloud
-    module "compute_instance" {
-      source = "git@github.com:h963z57/terraform_modules.git//yc_compute_instance"
-      //zone = ""
-      projectname = "NAME"
-      env = "prod"
-      allow_stopping_for_update = true
-      //platform_id               = ""
-      //cores                     = ""
-      memory                    = "4"
-      core_fraction             = "20"
-      //image_id                  = ""
-      //disk_size                 = "30"
-      //disk_type                 = ""
-      //secondary_disk_id          = [""]
-      //secondary_disk_auto_delete = false
-      //secondary_disk_mode       = "READ_WRITE"
-      vpc_id                    = <data.terraform_remote_state...>
-      security_group_ids        = <data.terraform_remote_state...>
-      vpc_static_address        = <data.terraform_remote_state...>
-      //metadata                  = ".ssh/id_ed25519.pub"
-      //preemptible               = false
-    }
+    skip_region_validation      = true
+    skip_credentials_validation = true
+    skip_requesting_account_id  = true 
+    skip_s3_checksum            = true
 
-## Compute disk module yandex cloud
-    module "compute_disk" {
-      source = "git@github.com:h963z57/terraform-modules.git//yc_compute_disk"
-      env = "prod"
-      disk_name = "NAME"
-      //type = "network-hdd"
-      size = "10"
-      //block_size = "4096"
-    }
+  }
+}
 
-## Object storage module yandex cloud (encrypted)
-    module "s3" {
-      source                = "git@github.com:h963z57/terraform_modules.git//yc_storage_bucket/encrypted"
-      env                   = "prod"
-      prefix                = "Username"
-      bucket_name           = "Name"
-      //acl                   = "private"
-      max_size              = "107374182400"
-      default_storage_class = "STANDARD" # ICE COLD
-      //anonymous_access_flags_read = "false"
-      //anonymous_access_flags_list = "false"
-      //status_lifecycle_rule_transition_current_version_to_cold_storage    = "false"
-      //days_lifecycle_rule_transition_current_version_to_cold_storage      = "360"
-      //status_lifecycle_rule_expiration_current_version                    = "false"
-      //days_lifecycle_rule_expiration_current_version_to_cold_storage      = "360"
-      //status_lifecycle_rule_transition_noncurrent_version_to_cold_storage = "false"
-      //days_lifecycle_rule_transition_noncurrent_version_to_cold_storage   = "360"
-      //status_lifecycle_rule_expiration_noncurrent_version                 = "false"
-      //days_lifecycle_rule_expiration_noncurrent_version_to_cold_storage   = "360"
-      //versioning                                                          = false
+data "terraform_remote_state" "remote_state" {
+  backend = "s3"
+  config = {
+    endpoints = {
+      s3 = "https://storage.yandexcloud.net"
     }
+    bucket = "<bucket-name>"
+    region = "ru-central1"
+    key    = "<path/to/terraform.tfstate>"
+
+    skip_region_validation      = true
+    skip_credentials_validation = true
+    skip_requesting_account_id  = true 
+    skip_s3_checksum            = true 
+  }
+}
+```
+
+### AWS
+
+#### Environments
+```bash
+export AWS_ACCESS_KEY_ID=<access_key>
+export AWS_SECRET_ACCESS_KEY=<secret_key>
+```
+
+```tf
+terraform {
+  backend "s3" {
+    bucket = "<bucket-name>"
+    key    = "<path/to/terraform.tfstate>"
+    region = "eu-central-1"
+  }
+}
+
+provider "aws" {
+  region = "eu-central-1"
+}
+
+data "terraform_remote_state" "vpc" {
+  backend = "s3"
+  config = {
+    bucket = "<bucket-name>"
+    key    = "<path/to/terraform.tfstate>"
+    region = "eu-central-1"
+  }
+}
+```
