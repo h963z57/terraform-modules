@@ -27,7 +27,7 @@ resource "aws_s3_bucket_versioning" "module" {
 resource "aws_s3_bucket_policy" "allow_access_from_another_account" {
   count  = var.status_bucket_policy ? 1 : 0
   bucket = aws_s3_bucket.module.id
-  policy = file("bucket_policy/${var.env}/${var.bucket_name}/policy.json")
+  policy = file("bucket_policy/${var.env}/${var.bucket_name}.json")
 }
 
 resource "aws_kms_key" "module" {
