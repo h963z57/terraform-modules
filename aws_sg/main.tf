@@ -24,7 +24,7 @@ resource "aws_security_group" "module" {
       to_port     = ingress.value
     }
   }
-  
+
   dynamic "ingress" {
     for_each = var.allow_ingress_ports_udp
     content {

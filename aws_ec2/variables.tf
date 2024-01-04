@@ -1,41 +1,41 @@
 variable "latest_image" {
-    type = string
-    default = "debian-12-amd64-*"
+  type    = string
+  default = "debian-12-amd64-*"
 }
 
 variable "ami" {
-    type = string
-    default = ""
+  type    = string
+  default = ""
 }
 
 variable "instance_type" {
-    type = string
-    default = "t3a.nano"
+  type    = string
+  default = "t3a.nano"
 }
 
 variable "subnet_id" {
-    type = string
-    default = ""
+  type    = string
+  default = ""
 }
 
 variable "vpc_security_group_ids" {
-    type = list
-    default = []
+  type    = list(any)
+  default = []
 }
 
 variable "user_data" {
-    type = string
-    default = "user_data.sh"
+  type    = string
+  default = "user_data.sh"
 }
 
 variable "volume_size" {
-    type = number
-    default = 16
+  type    = number
+  default = 16
 }
 
 variable "volume_type" {
-    type = string
-    default = "gp2"
+  type    = string
+  default = "gp2"
 }
 
 # variable "core_count" {
@@ -49,12 +49,11 @@ variable "volume_type" {
 # }
 
 variable "names" {
-  description = "List of names"
-  type        = list(string)
-  default     = []
+  type    = list(string)
+  default = []
 }
 
 variable "public_key" {
-    type = string
-    default = ""
+  type    = string
+  default = ""
 }
