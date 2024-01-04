@@ -8,6 +8,6 @@ module "aws_ses" {
   source  = "../../../../../terraform-modules/aws_ses"
   domains = ["example.com"]
   # ses-smtp-user = "ses-smtp-user"
-  # ses_keys = ["main"]
+  ses_keys = ["main"]
 }
 ```

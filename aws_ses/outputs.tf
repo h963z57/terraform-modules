@@ -34,6 +34,11 @@ output "ses_smtp_user_secret_access_key" {
   sensitive = true
 }
 
+output "ses_smtp_ses_smtp_password_v4" {
+  value     = aws_iam_access_key.module[*].ses_smtp_password_v4
+  sensitive = true
+}
+
 output "aws_ses_domain_identity_ids" {
   value = aws_ses_domain_identity.module[*].id
 }

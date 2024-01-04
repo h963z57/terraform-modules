@@ -10,5 +10,5 @@ variable "ses-smtp-user" {
 
 variable "ses_keys" {
   type    = list(string)
-  default = ["main"]
+  default = []
 }
