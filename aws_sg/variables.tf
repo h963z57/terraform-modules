@@ -40,10 +40,10 @@ variable "allow_egress_ports" {
 
 variable "ingress_rules_advanced" {
   type = list(object({
-    protocol    = string
-    description = string
+    protocol       = string
+    description    = string
     v4_cidr_blocks = list(string)
-    port        = number
+    port           = number
   }))
   default = [
     # {
@@ -63,10 +63,10 @@ variable "ingress_rules_advanced" {
 
 variable "egress_rules_advanced" {
   type = list(object({
-    protocol    = string
-    description = string
+    protocol       = string
+    description    = string
     v4_cidr_blocks = list(string)
-    port        = number
+    port           = number
   }))
   default = [
     # {
