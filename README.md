@@ -90,3 +90,37 @@ data "terraform_remote_state" "vpc" {
   }
 }
 ```
+
+### DIGITALOCEAN
+
+#### Environments
+```bash
+export TF_VAR_do_token=<token>
+```
+
+```tf
+terraform {
+  required_providers {
+    digitalocean = {
+      source = "digitalocean/digitalocean"
+    }
+  }
+}
+
+terraform {
+  backend "s3" {
+    bucket = "<bucket-name>"
+    key    = "<path/to/terraform.tfstate>"
+    region = "eu-central-1"
+  }
+}
+
+provider "digitalocean" {
+  token = var.do_token
+}
+
+variable "do_token" {
+  default = null
+  description = "DigitalOcean API token"
+}
+```
