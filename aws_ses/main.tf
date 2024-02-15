@@ -13,7 +13,7 @@ resource "aws_iam_user" "module" {
 
 resource "aws_iam_access_key" "module" {
   count = length(var.ses_keys)
-  user = aws_iam_user.module.name
+  user  = aws_iam_user.module.name
 }
 
 resource "aws_ses_domain_identity" "module" {

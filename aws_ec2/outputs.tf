@@ -1,5 +1,5 @@
 output "ec2_id" {
-value = { for name, instance in aws_instance.module : name => instance.id }
+  value = { for name, instance in aws_instance.module : name => instance.id }
 }
 
 output "ec2_public_ip" {

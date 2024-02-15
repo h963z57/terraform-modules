@@ -1,11 +1,11 @@
 resource "aws_instance" "module" {
-  for_each                = toset(var.names)
-  ami                     = var.ami
-  instance_type           = var.instance_type
-  subnet_id               = var.subnet_id
-  vpc_security_group_ids  = var.vpc_security_group_ids
-  user_data               = file(var.user_data)
-  key_name                = aws_key_pair.module[each.key].id
+  for_each               = toset(var.names)
+  ami                    = var.ami
+  instance_type          = var.instance_type
+  subnet_id              = var.subnet_id
+  vpc_security_group_ids = var.vpc_security_group_ids
+  user_data              = file(var.user_data)
+  key_name               = aws_key_pair.module[each.key].id
 
   root_block_device {
     volume_size = var.volume_size
@@ -18,7 +18,7 @@ resource "aws_instance" "module" {
 }
 
 resource "aws_key_pair" "module" {
-  for_each    = toset(var.names)
-  key_name    = "key-for-${each.key}-ec2"
-  public_key  = var.public_key
+  for_each   = toset(var.names)
+  key_name   = "key-for-${each.key}-ec2"
+  public_key = var.public_key
 }
