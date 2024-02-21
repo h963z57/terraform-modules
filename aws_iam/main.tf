@@ -53,6 +53,7 @@ resource "aws_iam_user_group_membership" "module" {
 resource "aws_iam_access_key" "module" {
   for_each = var.security_credentials
   user     = each.key
+  depends_on = [aws_iam_group.module, aws_iam_user.module]
 }
 
 resource "aws_iam_policy" "module" {
