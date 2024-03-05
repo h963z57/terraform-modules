@@ -57,3 +57,8 @@ variable "public_key" {
   type    = string
   default = ""
 }
+
+variable "cpu_credits" {
+  type    = string
+  default = ""
+}

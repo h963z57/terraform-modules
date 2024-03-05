@@ -7,6 +7,13 @@ resource "aws_instance" "module" {
   user_data              = file(var.user_data)
   key_name               = aws_key_pair.module[each.key].id
 
+  dynamic "credit_specification" {
+    for_each = var.cpu_credits != "" ? [var.cpu_credits] : []
+    content {
+      cpu_credits = credit_specification.value
+    }
+  }
+
   root_block_device {
     volume_size = var.volume_size
     volume_type = var.volume_type
