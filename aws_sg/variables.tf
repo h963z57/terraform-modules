@@ -83,3 +83,49 @@ variable "egress_rules_advanced" {
     # }
   ]
 }
+
+variable "ipv6_ingress_rules_advanced" {
+  type = list(object({
+    protocol       = string
+    description    = string
+    v6_cidr_blocks = list(string)
+    port           = number
+  }))
+  default = [
+    # {
+    #   protocol = "TCP"
+    #   description = "Auto generated rule by terraform (advanced mode)"
+    #   v6_cidr_blocks = ["::/0"]
+    #   port = "-1"
+    # },
+    # {
+    #   protocol = "UDP"
+    #   description = "Auto generated rule by terraform (advanced mode)"
+    #   v6_cidr_blocks = ["::/0"]
+    #   port = "-1"
+    # }
+  ]
+}
+
+variable "ipv6_egress_rules_advanced" {
+  type = list(object({
+    protocol       = string
+    description    = string
+    v6_cidr_blocks = list(string)
+    port           = number
+  }))
+  default = [
+    # {
+    #   protocol = "TCP"
+    #   description = "Auto generated rule by terraform"
+    #   v6_cidr_blocks = ["::/0"]
+    #   port = "-1"
+    # },
+    # {
+    #   protocol = "UDP"
+    #   description = "Auto generated rule by terraform"
+    #   v6_cidr_blocks = ["::/0"]
+    #   port = "-1"
+    # }
+  ]
+}

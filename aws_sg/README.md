@@ -26,5 +26,22 @@ module "sg" {
   #          port = "9100"
   #      }
   #]
+
+  # ipv6_ingress_rules_advanced = [
+  #   {
+  #     protocol = "TCP" # UDP
+  #     description = "Auto generated rule by terraform (advanced mode)"
+  #     v6_cidr_blocks = ["::/0"]
+  #     port = "9100"
+  #   }
+  # ]
+  # egress_rules_advanced = [
+  #      {
+  #          protocol = "TCP" # UDP
+  #          description = "description"
+  #          v6_cidr_blocks = ["::/0"]
+  #          port = "9100"
+  #      }
+  #]
 }
 ```
