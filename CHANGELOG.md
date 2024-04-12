@@ -1,10 +1,5 @@
 # Changelog
 
-## [2.3.0] - 15-Mar-2024
-### Added
-- IPv6 support (aws: vpc, sg)
-- Output ipv6 addr aws_ec2
-
 ## [2.2.0] - 15-Mar-2024
 ### Added
 - aws_eip module
