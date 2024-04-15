@@ -8,7 +8,7 @@ variable "groups_with_users" {
 variable "security_credentials" {
   description = "IAM user names with descriptions"
   type        = any
-  default     = {
+  default = {
     # "user1" = ["desc1", "desc2"],
     # "user2" = ["desc3", "desc4"]
   }

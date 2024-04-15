@@ -1,4 +1,4 @@
 variable "instances" {
-  type = map(string)
+  type    = map(string)
   default = {}
 }

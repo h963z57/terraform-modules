@@ -11,6 +11,6 @@ output "iam_access_keys" {
 }
 
 output "iam_secret_keys" {
-  value = { for key, val in aws_iam_access_key.module : key => val.secret }
+  value     = { for key, val in aws_iam_access_key.module : key => val.secret }
   sensitive = true
 }

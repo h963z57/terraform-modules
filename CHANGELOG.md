@@ -1,5 +1,11 @@
 # Changelog
 
+## [unreleased] - 15-Apr-2024
+### Added
+- IPv6 dualstack support (IPv6 for aws_vpc enabled by default, without subnets)
+### Changed
+- Terraform fmt
+
 ## [2.3.2] - 15-Apr-2024
 ### Changed
 - Add output IPv6 (aws_ec2)

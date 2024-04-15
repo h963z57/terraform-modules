@@ -9,13 +9,13 @@ variable "prefix" {
 }
 
 variable "encrypt" {
-  type        = bool
-  default     = false
+  type    = bool
+  default = false
 }
 
 variable "bucket_names" {
-  type        = list(string)
-  default     = []
+  type    = list(string)
+  default = []
 }
 
 variable "acl" {
@@ -49,42 +49,42 @@ variable "anonymous_access_flags_list" {
 }
 
 variable "status_lifecycle_rule_transition_current_version_to_cold_storage" {
-  type = bool
+  type    = bool
   default = "false"
 }
 
 variable "days_lifecycle_rule_transition_current_version_to_cold_storage" {
-  type = number
+  type    = number
   default = "360"
 }
 
 variable "status_lifecycle_rule_expiration_current_version" {
-  type = bool
+  type    = bool
   default = "false"
 }
 
 variable "days_lifecycle_rule_expiration_current_version_to_cold_storage" {
-  type = number
+  type    = number
   default = "360"
 }
 
 variable "status_lifecycle_rule_transition_noncurrent_version_to_cold_storage" {
-  type = bool
+  type    = bool
   default = "false"
 }
 
 variable "days_lifecycle_rule_transition_noncurrent_version_to_cold_storage" {
-  type = number
+  type    = number
   default = "360"
 }
 
 variable "status_lifecycle_rule_expiration_noncurrent_version" {
-  type = bool
+  type    = bool
   default = "false"
 }
 
 variable "days_lifecycle_rule_expiration_noncurrent_version_to_cold_storage" {
-  type = number
+  type    = number
   default = "360"
 }
 

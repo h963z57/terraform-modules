@@ -15,6 +15,7 @@ module "sg" {
   #     protocol = "TCP" # UDP
   #     description = "Auto generated rule by terraform (advanced mode)"
   #     v4_cidr_blocks = ["10.0.0.0/24"]
+  #     v6_cidr_blocks = []
   #     port = "9100"
   #   }
   # ]
@@ -23,8 +24,10 @@ module "sg" {
   #          protocol = "TCP" # UDP
   #          description = "description"
   #          v4_cidr_blocks = ["10.0.0.0/24"]
+  #          v6_cidr_blocks = []
   #          port = "9100"
   #      }
   #]
+  # ipv6_dualstack = false
 }
 ```
