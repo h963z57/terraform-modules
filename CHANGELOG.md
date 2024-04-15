@@ -1,5 +1,9 @@
 # Changelog
 
+## [2.3.2] - 15-Apr-2024
+### Changed
+- Add output IPv6 (aws_ec2)
+
 ## [2.3.1] - 12-Apr-2024
 ### Changed
 - Revent 2.3.0

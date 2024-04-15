@@ -9,3 +9,7 @@ output "ec2_public_ip" {
 output "ec2_private_ip" {
   value = { for name, instance in aws_instance.module : name => instance.private_ip }
 }
+
+output "ec2_public_ipv6" {
+  value = { for name, instance in aws_instance.module : name => instance.ipv6_addresses }
+}
