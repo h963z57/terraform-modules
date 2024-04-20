@@ -13,3 +13,13 @@ variable "public_subnet_cidrs" {
 variable "private_subnet_cidrs" {
   default = []
 }
+
+variable "ipv6_state" {
+  type    = bool
+  default = false
+}
+
+variable "assign_ipv6_address_on_creation" {
+  type    = bool
+  default = false
+}

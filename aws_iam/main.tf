@@ -13,7 +13,7 @@ locals {
       for user in users : "${group}_${user}"
     ]
   }
-    formatted_user_group_pairs = flatten([
+  formatted_user_group_pairs = flatten([
     for g, users in local.formatted_users : [
       for u in users : {
         group = g
@@ -21,7 +21,7 @@ locals {
       }
     ]
   ])
-    policy_group_pairs = flatten([
+  policy_group_pairs = flatten([
     for policy, groups in var.policies : [
       for group in groups : {
         policy = policy
@@ -37,22 +37,22 @@ resource "aws_iam_group" "module" {
 }
 
 resource "aws_iam_user" "module" {
-  for_each = toset(flatten(values(local.formatted_users)))
-  name     = each.value
+  for_each   = toset(flatten(values(local.formatted_users)))
+  name       = each.value
   depends_on = [aws_iam_group.module]
 }
 
 resource "aws_iam_user_group_membership" "module" {
   for_each = { for pair in local.formatted_user_group_pairs : "${pair.group}:${pair.user}" => pair }
 
-  user   = each.value.user
-  groups = [each.value.group]
+  user       = each.value.user
+  groups     = [each.value.group]
   depends_on = [aws_iam_group.module, aws_iam_user.module]
 }
 
 resource "aws_iam_access_key" "module" {
-  for_each = var.security_credentials
-  user     = each.key
+  for_each   = var.security_credentials
+  user       = each.key
   depends_on = [aws_iam_group.module, aws_iam_user.module]
 }
 
