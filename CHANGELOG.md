@@ -1,6 +1,6 @@
 # Changelog
 
-## [unreleased] - 15-Apr-2024
+## [2.4.0] - 20-Apr-2024
 ### Added
 - IPv6 dualstack support (aws_sg, aws_vpc) (IPv6 for aws_vpc enabled by default, without subnets)
 ### Changed
