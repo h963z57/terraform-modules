@@ -14,5 +14,6 @@ module "aws_ec2" {
   # volume_type = "gp2"
   names       = ["list", "of", "ec2", "instance"]
   public_key = "ssh-ed25519 AAAAC3DGXcE/j"
+  # allow_aws_efs = ["fs-04e92d5ef38908a77"]
 }
 ```
