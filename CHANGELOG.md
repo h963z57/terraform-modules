@@ -1,5 +1,9 @@
 # Changelog
 
+## [2.4.2] - 07-Jul-2024
+### Changed
+- Enable IPv6 for droplets by default
+
 ## [2.4.1] - 29-Apr-2024
 ### Added
 - AWS_EFS IAM role for EC2

@@ -8,6 +8,7 @@ terraform {
 
 resource "digitalocean_droplet" "node" {
   for_each = var.names
+  ipv6     = true
   image    = var.image
   name     = each.value
   region   = var.region
