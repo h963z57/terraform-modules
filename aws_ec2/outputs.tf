@@ -11,5 +11,5 @@ output "ec2_private_ip" {
 }
 
 output "ec2_public_ipv6" {
-  value = { for name, instance in aws_instance.module : name => instance.ipv6_addresses }
+  value = { for name, instance in aws_instance.module : name => instance.ipv6_addresses[0] }
 }

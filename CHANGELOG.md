@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.4.3] - 11-Jul-2024
+### Changed
+- Fix output ipv6 addr aws_ec2
+### Added
+- Output IPv6 droplet
+
 ## [2.4.2] - 07-Jul-2024
 ### Changed
 - Enable IPv6 for droplets by default
