@@ -16,7 +16,7 @@ resource "digitalocean_firewall" "module" {
     content {
       protocol         = "tcp"
       port_range       = inbound_rule.value
-      source_addresses = ["0.0.0.0/0"]
+      source_addresses = ["0.0.0.0/0", "::/0"]
     }
   }
 
@@ -25,7 +25,7 @@ resource "digitalocean_firewall" "module" {
     content {
       protocol         = "udp"
       port_range       = inbound_rule.value
-      source_addresses = ["0.0.0.0/0"]
+      source_addresses = ["0.0.0.0/0", "::/0"]
     }
   }
 
@@ -35,7 +35,7 @@ resource "digitalocean_firewall" "module" {
     content {
       protocol              = "tcp"
       port_range            = outbound_rule.value
-      destination_addresses = ["0.0.0.0/0"]
+      destination_addresses = ["0.0.0.0/0", "::/0"]
     }
   }
 
@@ -44,7 +44,7 @@ resource "digitalocean_firewall" "module" {
     content {
       protocol              = "udp"
       port_range            = outbound_rule.value
-      destination_addresses = ["0.0.0.0/0"]
+      destination_addresses = ["0.0.0.0/0", "::/0"]
     }
   }
 

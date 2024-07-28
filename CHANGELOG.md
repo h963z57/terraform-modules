@@ -1,5 +1,9 @@
 # Changelog
 
+## [2.5.0] - 28-Jul-2024
+### Changed
+- Enable IPv6 DigitalOcean by default
+
 ## [2.4.3] - 11-Jul-2024
 ### Changed
 - Fix output ipv6 addr aws_ec2
