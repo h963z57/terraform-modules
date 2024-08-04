@@ -1,5 +1,9 @@
 # Changelog
 
+## [2.6.0] - 4-Aug-2024
+### Changed
+- Name of aws_ec2. Added to name "${env}"
+
 ## [2.5.0] - 28-Jul-2024
 ### Changed
 - Enable IPv6 DigitalOcean by default

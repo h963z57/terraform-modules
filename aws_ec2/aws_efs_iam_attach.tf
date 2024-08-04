@@ -11,7 +11,7 @@ locals {
 
 resource "aws_iam_role" "efs_access_role" {
   count = local.state_allow_aws_efs ? 1 : 0
-  name  = "${var.names[0]}-efs-access-role"
+  name  = "${var.env}-${var.names[0]}-efs-access-role"
   
   assume_role_policy = jsonencode({
     Version   = "2012-10-17",
@@ -27,7 +27,7 @@ resource "aws_iam_role" "efs_access_role" {
 
 resource "aws_iam_policy" "efs_access_policy" {
   count       = local.state_allow_aws_efs ? 1 : 0
-  name         = "${var.names[0]}-efs-access-policy"
+  name         = "${var.env}-${var.names[0]}-efs-access-policy"
   description  = "Policy allowing access to EFS"
 
   policy = jsonencode({
@@ -53,7 +53,7 @@ resource "aws_iam_policy" "efs_access_policy" {
 
 resource "aws_iam_policy" "ec2_describe_availability_zones" {
   count       = local.state_allow_aws_efs ? 1 : 0
-  name         = "${var.names[0]}-ec2-describe-availability-zones"
+  name         = "${var.env}-${var.names[0]}-ec2-describe-availability-zones"
   description  = "Policy allowing access to EFS"
 
   policy = jsonencode({
@@ -81,6 +81,6 @@ resource "aws_iam_role_policy_attachment" "ec2_describe_availability_zones" {
 
 resource "aws_iam_instance_profile" "efs_access_instance_profile" {
   count = local.state_allow_aws_efs ? 1 : 0
-  name  = "${var.names[0]}-efs-access-instance-profile"
+  name  = "${var.env}-${var.names[0]}-efs-access-instance-profile"
   role  = aws_iam_role.efs_access_role[0].name
 }

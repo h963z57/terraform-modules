@@ -48,6 +48,11 @@ variable "volume_type" {
 #     default = 1
 # }
 
+variable "env" {
+  type    = string
+  default = "test"
+}
+
 variable "names" {
   type    = list(string)
   default = []

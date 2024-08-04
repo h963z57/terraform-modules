@@ -20,12 +20,12 @@ resource "aws_instance" "module" {
   }
 
   tags = {
-    Name = each.key
+    Name = "${var.env}-${each.key}"
   }
 }
 
 resource "aws_key_pair" "module" {
   for_each   = toset(var.names)
-  key_name   = "key-for-${each.key}-ec2"
+  key_name   = "key-for-${var.env}-${each.key}-ec2"
   public_key = var.public_key
 }
