@@ -8,7 +8,7 @@ terraform {
 }
 
 resource "aws_iam_user" "module" {
-  name = var.ses-smtp-user
+  name = "${var.env}-${var.ses-smtp-user}"
 }
 
 resource "aws_iam_access_key" "module" {
@@ -18,7 +18,7 @@ resource "aws_iam_access_key" "module" {
 
 resource "aws_ses_domain_identity" "module" {
   count  = length(var.domains)
-  domain = var.domains[count.index]
+  domain = "${var.domains[count.index]}"
 }
 
 resource "aws_ses_domain_dkim" "module" {
@@ -27,7 +27,7 @@ resource "aws_ses_domain_dkim" "module" {
 }
 
 resource "aws_iam_user_policy" "module" {
-  name = "ses-smtp-user-policy"
+  name = "${var.env}-ses-smtp-user-policy"
   user = aws_iam_user.module.name
 
   policy = jsonencode({

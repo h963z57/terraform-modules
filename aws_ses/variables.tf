@@ -1,3 +1,8 @@
+variable "env" {
+  type        = string
+  default     = "develop"
+}
+
 variable "domains" {
   type    = list(string)
   default = []
