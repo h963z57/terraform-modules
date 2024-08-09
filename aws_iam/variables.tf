@@ -1,3 +1,8 @@
+variable "env" {
+  type        = string
+  default     = "develop"
+}
+
 variable "groups_with_users" {
   type = map(list(string))
   default = {

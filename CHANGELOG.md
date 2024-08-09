@@ -1,5 +1,9 @@
 # Changelog
 
+## [2.7.0] - 9-Aug-2024
+### Added
+- Env support to aws_iam
+
 ## [2.6.0] - 4-Aug-2024
 ### Changed
 - Name of aws_ec2. Added to name "${env}"
