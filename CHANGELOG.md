@@ -3,6 +3,7 @@
 ## [3.0.0] - 10-Aug-2024
 ### Added
 - AWS Cloudfront module
+- AWS EFS module
 
 ## [2.7.0] - 9-Aug-2024
 ### Added
