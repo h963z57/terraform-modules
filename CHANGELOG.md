@@ -1,5 +1,9 @@
 # Changelog
 
+## [3.0.0] - 10-Aug-2024
+### Added
+- AWS Cloudfront module
+
 ## [2.7.0] - 9-Aug-2024
 ### Added
 - Env support to aws_iam
