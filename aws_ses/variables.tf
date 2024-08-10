@@ -1,6 +1,6 @@
 variable "env" {
-  type        = string
-  default     = "develop"
+  type    = string
+  default = "develop"
 }
 
 variable "domains" {

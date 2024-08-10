@@ -69,11 +69,11 @@ variable "cpu_credits" {
 }
 
 variable "state_allow_aws_efs" {
-  type = bool
+  type    = bool
   default = false
 }
 
 variable "allow_aws_efs" {
-  type = list(string)
+  type    = list(string)
   default = []
 }

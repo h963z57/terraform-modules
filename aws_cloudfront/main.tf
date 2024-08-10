@@ -56,9 +56,9 @@ resource "aws_cloudfront_distribution" "module" {
 
   viewer_certificate {
     # cloudfront_default_certificate = true
-    acm_certificate_arn            = var.acm_crt
-    ssl_support_method             = "sni-only"
-    minimum_protocol_version       = "TLSv1.2_2019"
+    acm_certificate_arn      = var.acm_crt
+    ssl_support_method       = "sni-only"
+    minimum_protocol_version = "TLSv1.2_2019"
   }
 
   aliases = var.aliases

@@ -10,5 +10,5 @@ variable "subnet_id" {
 
 variable "names" {
   description = "Mapping of EFS names to their respective security groups"
-  type = map(list(string))
+  type        = map(list(string))
 }

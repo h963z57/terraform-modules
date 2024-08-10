@@ -18,7 +18,7 @@ resource "aws_iam_access_key" "module" {
 
 resource "aws_ses_domain_identity" "module" {
   count  = length(var.domains)
-  domain = "${var.domains[count.index]}"
+  domain = var.domains[count.index]
 }
 
 resource "aws_ses_domain_dkim" "module" {
