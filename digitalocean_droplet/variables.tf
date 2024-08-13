@@ -3,6 +3,11 @@ variable "names" {
   default = []
 }
 
+variable "env" {
+  type    = string
+  default = "develop"
+}
+
 variable "image" {
   type    = string
   default = ""

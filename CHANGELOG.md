@@ -1,5 +1,10 @@
 # Changelog
 
+## [3.1.0] - 13-Aug-2024
+### Added
+- Env support DigitalOcean droplet
+- Env support DigitalOcean firewall
+
 ## [3.0.0] - 10-Aug-2024
 ### Added
 - AWS Cloudfront module
