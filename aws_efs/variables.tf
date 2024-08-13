@@ -12,3 +12,7 @@ variable "names" {
   description = "Mapping of EFS names to their respective security groups"
   type        = map(list(string))
 }
+
+variable "default_ap" {
+  default = true
+}

@@ -1,5 +1,9 @@
 # Changelog
 
+## [3.2.0] - 13-Aug-2024
+### Added
+- Create default ap AWS_EFS (default false)
+
 ## [3.1.0] - 13-Aug-2024
 ### Added
 - Env support DigitalOcean droplet

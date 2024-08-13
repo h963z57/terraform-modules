@@ -23,3 +23,22 @@ resource "aws_efs_mount_target" "module" {
   subnet_id       = var.subnet_id
   security_groups = each.value
 }
+
+resource "aws_efs_access_point" "default" {
+  for_each = var.default_ap ? var.names : {}
+
+  file_system_id = aws_efs_file_system.module[each.key].id
+
+  root_directory {
+    path = "/"
+    creation_info {
+      owner_uid   = 1000
+      owner_gid   = 1000
+      permissions = "0770"
+    }
+  }
+
+  tags = {
+    Name = "${var.env}-default-access-point"
+  }
+}
