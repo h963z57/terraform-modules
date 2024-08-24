@@ -75,4 +75,28 @@ resource "aws_security_group" "module" {
       to_port          = egress.value.port
     }
   }
+
+  #=============== Internal Traffic Rule (self = true) =================
+
+  dynamic "ingress" {
+    for_each = var.self ? [1] : []
+    content {
+      description = "Allow all inbound traffic from within the SG"
+      from_port   = 0
+      to_port     = 0
+      protocol    = "-1"
+      self        = true 
+    }
+  }
+
+  dynamic "egress" {
+    for_each = var.self ? [1] : []
+    content {
+      description = "Allow all outbound traffic to within the SG"
+      from_port   = 0
+      to_port     = 0
+      protocol    = "-1"
+      self        = true
+    }
+  }
 }

@@ -1,5 +1,9 @@
 # Changelog
 
+## [3.3.0] - 24-Aug-2024
+### Added
+- Self option to aws_sg
+
 ## [3.2.0] - 13-Aug-2024
 ### Added
 - Create default ap AWS_EFS (default false)

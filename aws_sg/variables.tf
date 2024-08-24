@@ -96,3 +96,8 @@ variable "ipv6_dualstack" {
   type    = bool
   default = false
 }
+
+variable "self" {
+  type = bool
+  default = false
+}

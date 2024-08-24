@@ -29,5 +29,6 @@ module "sg" {
   #      }
   #]
   # ipv6_dualstack = false
+  # self           = false
 }
 ```
