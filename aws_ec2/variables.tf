@@ -25,7 +25,7 @@ variable "vpc_security_group_ids" {
 
 variable "user_data" {
   type    = string
-  default = "user_data.sh"
+  default = "empty.sh"
 }
 
 variable "volume_size" {

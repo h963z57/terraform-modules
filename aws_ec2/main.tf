@@ -4,7 +4,7 @@ resource "aws_instance" "module" {
   instance_type          = var.instance_type
   subnet_id              = var.subnet_id
   vpc_security_group_ids = var.vpc_security_group_ids
-  user_data              = file(var.user_data)
+  user_data              = file("./bootstrap/${var.user_data}")
   key_name               = aws_key_pair.module[each.key].id
 
   dynamic "credit_specification" {

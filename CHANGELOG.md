@@ -1,5 +1,9 @@
 # Changelog
 
+## [3.3.1] - 30-Aug-2024
+### Changed
+- user_data (aws_ec2) takes from ./bootstrap folder
+
 ## [3.3.0] - 24-Aug-2024
 ### Added
 - Self option to aws_sg
