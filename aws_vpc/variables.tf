@@ -14,6 +14,16 @@ variable "private_subnet_cidrs" {
   default = []
 }
 
+variable "enable_dns_support" {
+  type    = bool
+  default = true
+}
+
+variable "enable_dns_hostnames" {
+  type    = bool
+  default = true
+}
+
 variable "ipv6_state" {
   type    = bool
   default = false

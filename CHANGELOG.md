@@ -1,5 +1,9 @@
 # Changelog
 
+## [3.4.0] - 15-Sep-2024
+### Added
+- AWS_VPC enable_dns_support & enable_dns_hostnames
+
 ## [3.3.1] - 30-Aug-2024
 ### Changed
 - user_data (aws_ec2) takes from ./bootstrap folder

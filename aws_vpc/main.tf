@@ -12,6 +12,8 @@ data "aws_availability_zones" "available" {}
 resource "aws_vpc" "main" {
   cidr_block                       = var.vpc_cidr
   assign_generated_ipv6_cidr_block = true #var.ipv6_state
+  enable_dns_support   = var.enable_dns_support
+  enable_dns_hostnames = var.enable_dns_hostnames
   tags = {
     Name = "${var.env}-vpc"
   }
