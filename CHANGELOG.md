@@ -1,5 +1,9 @@
 # Changelog
 
+## [4.0.0] - 16-Sep-2024
+### Added
+- AWS_RDS
+
 ## [3.4.0] - 15-Sep-2024
 ### Added
 - AWS_VPC enable_dns_support & enable_dns_hostnames
