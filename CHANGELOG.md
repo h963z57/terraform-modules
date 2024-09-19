@@ -1,5 +1,9 @@
 # Changelog
 
+## [4.0.1] - 19-Sep-2024
+### Changed
+- AWS_RDS minor fix
+
 ## [4.0.0] - 19-Sep-2024
 ### Added
 - AWS_RDS
