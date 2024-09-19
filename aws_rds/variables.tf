@@ -8,6 +8,26 @@ variable "availability_zone" {
   default = ""
 }
 
+variable "apply_immediately" {
+  type = bool
+  default = false
+}
+
+variable "network_type" {
+  type = string
+  default = "IPV4"
+}
+
+variable "custom_params" {
+  type = bool
+  default = false
+}
+
+variable "family_ver" {
+  type    = number
+  default = 16
+}
+
 variable "name" {
   type    = string
   default = "chame"
@@ -81,4 +101,9 @@ variable "backup_retention_period" {
 variable "backup_window" {
   type = string
   default = "07:00-09:00"
+}
+
+variable "force_ssl" {
+  type    = bool
+  default = true
 }
