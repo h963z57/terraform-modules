@@ -16,10 +16,16 @@ module "rds" {
   rds_password           = "mysuperuser"
   vpc_security_group_ids = []
   db_subnet_group        = <subnet ids at least 2>
+  # apply_immediately      = false
   # publicly_accessible    = false
+  # network_type           = "IPV4"
   # skip_final_snapshot    = true
   # multi_az               = false
   # backup_retention_period = 7
   # backup_window          = "07:00-09:00"
+
+  # custom_params            = false
+  # family_ver               = "16"
+  # force_ssl                = true
 }
 ```

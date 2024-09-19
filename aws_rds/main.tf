@@ -7,6 +7,18 @@ terraform {
   }
 }
 
+resource "aws_db_parameter_group" "module" {
+  count       = var.custom_params ? 1 : 0
+  name        = "${var.env}-${var.name}-rds-pg-parameter-group"
+  family      = "${var.engine}${var.family_ver}"
+
+  parameter {
+    name         = "rds.force_ssl"
+    value        = var.force_ssl ? "1" : "0" 
+    apply_method = "pending-reboot"
+  }
+}
+
 resource "aws_db_instance" "module" {
   identifier              = "${var.env}-${var.name}"
   instance_class          = var.instance_class
@@ -22,10 +34,14 @@ resource "aws_db_instance" "module" {
   skip_final_snapshot     = var.skip_final_snapshot
   multi_az                = var.multi_az
   availability_zone       = var.availability_zone != "" ? var.availability_zone : null
+  network_type            = var.network_type
+  apply_immediately       = var.apply_immediately
   
   backup_retention_period = var.backup_retention_period != "" ? var.backup_retention_period : null
   backup_window           = var.backup_window != "" ? var.backup_window : null
-
+  
+  parameter_group_name    = var.custom_params ? aws_db_parameter_group.module[0].name : null
+  
   # monitoring_interval = 60
   # monitoring_role_arn = aws_iam_role.rds_monitoring.arn
 }
