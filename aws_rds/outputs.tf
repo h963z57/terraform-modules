@@ -1,5 +1,5 @@
 output "rds_endpoint" {
-  value       = aws_db_instance.module.endpoint
+  value = replace(aws_db_instance.module.endpoint, "/:\\d+$/", "")
 }
 
 output "rds_port" {

@@ -1,5 +1,9 @@
 # Changelog
 
+## [4.0.2] - 19-Sep-2024
+### Changed
+- Output endpoint
+
 ## [4.0.1] - 19-Sep-2024
 ### Changed
 - AWS_RDS minor fix
