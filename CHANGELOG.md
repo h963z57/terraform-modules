@@ -1,5 +1,9 @@
 # Changelog
 
+## [4.0.3] - 13-Dec-2024
+### Changed
+- Can disable ipv4
+
 ## [4.0.2] - 19-Sep-2024
 ### Changed
 - Output endpoint

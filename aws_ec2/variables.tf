@@ -28,10 +28,10 @@ variable "user_data" {
   default = "empty.sh"
 }
 
-# variable "associate_public_ip_address" {
-#   type    = bool
-#   default = false
-# }
+variable "associate_public_ip_address" {
+  type    = bool
+  default = true
+}
 
 variable "volume_size" {
   type    = number
