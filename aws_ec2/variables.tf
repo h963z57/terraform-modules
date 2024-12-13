@@ -28,6 +28,11 @@ variable "user_data" {
   default = "empty.sh"
 }
 
+variable "associate_public_ip_address" {
+  type    = bool
+  default = false
+}
+
 variable "volume_size" {
   type    = number
   default = 16
