@@ -7,7 +7,7 @@ resource "aws_instance" "module" {
   user_data              = file("./bootstrap/${var.user_data}")
   key_name               = aws_key_pair.module[each.key].id
 
-  associate_public_ip_address = var.associate_public_ip_address
+  # associate_public_ip_address = var.associate_public_ip_address
 
   dynamic "credit_specification" {
     for_each = var.cpu_credits != "" ? [var.cpu_credits] : []
