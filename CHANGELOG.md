@@ -1,5 +1,9 @@
 # Changelog
 
+## [4.1.0] - 09-Mar-2025
+### Added
+- EFS type manage (burstable or elastic)
+
 ## [4.0.3] - 13-Dec-2024
 ### Changed
 - Can disable ipv4

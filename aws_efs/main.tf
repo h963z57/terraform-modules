@@ -11,6 +11,8 @@ resource "aws_efs_file_system" "module" {
   for_each       = var.names
   creation_token = "${var.env}-${each.key}"
 
+  throughput_mode = var.throughput_mode
+
   tags = {
     Name = "${var.env}-${each.key}"
   }
