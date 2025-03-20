@@ -58,9 +58,16 @@ variable "env" {
   default = "test"
 }
 
-variable "names" {
-  type    = list(string)
-  default = []
+variable "instances" {
+  type = list(object({
+    name                          = string
+    volume_size                   = number
+    volume_type                   = string
+    associate_public_ip_address   = bool
+    instance_type                 = string
+    ami                           = string
+    cpu_credits                   = string
+  }))
 }
 
 variable "public_key" {
