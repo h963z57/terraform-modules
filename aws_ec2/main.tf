@@ -19,6 +19,12 @@ resource "aws_instance" "module" {
     }
   }
 
+  metadata_options {
+    http_tokens                 = "required"
+    http_endpoint               = "enabled"
+    http_put_response_hop_limit = 2
+  }
+
   root_block_device {
     volume_size = each.value.volume_size
     volume_type = each.value.volume_type
