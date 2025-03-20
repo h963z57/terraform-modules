@@ -10,6 +10,8 @@ resource "aws_instance" "module" {
 
   associate_public_ip_address = each.value.associate_public_ip_address
 
+  iam_instance_profile = local.state_allow_aws_efs ? aws_iam_instance_profile.efs_access_instance_profile[0].name : null
+
   dynamic "credit_specification" {
     for_each = each.value.cpu_credits != "" ? [each.value.cpu_credits] : []
     content {

@@ -3,6 +3,11 @@ variable "latest_image" {
   default = "debian-12-amd64-*"
 }
 
+variable "name" {
+  type    = string
+  default = "changeme"
+}
+
 variable "ami" {
   type    = string
   default = ""
