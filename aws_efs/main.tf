@@ -1,33 +1,16 @@
-terraform {
-  required_providers {
-    aws = {
-      source = "hashicorp/aws"
-      # version = "~> 5.0"
-    }
-  }
-}
-
 resource "aws_efs_file_system" "module" {
-  for_each       = var.names
-  creation_token = "${var.env}-${each.key}"
+  for_each       = { for fs in var.names : fs.name => fs }
 
-  throughput_mode = var.throughput_mode
+  creation_token = "${var.env}-${each.key}"
+  throughput_mode = each.value.throughput_mode
 
   tags = {
     Name = "${var.env}-${each.key}"
   }
 }
 
-resource "aws_efs_mount_target" "module" {
-  for_each = { for name, sg_list in var.names : name => sg_list }
-
-  file_system_id  = aws_efs_file_system.module[each.key].id
-  subnet_id       = var.subnet_id
-  security_groups = each.value
-}
-
 resource "aws_efs_access_point" "default" {
-  for_each = var.default_ap ? var.names : {}
+  for_each = { for fs in var.names : fs.name => fs if fs.default_ap } # Создаём AP, если `default_ap = true`
 
   file_system_id = aws_efs_file_system.module[each.key].id
 
@@ -41,6 +24,14 @@ resource "aws_efs_access_point" "default" {
   }
 
   tags = {
-    Name = "${var.env}-default-access-point"
+    Name = "${var.env}-${each.key}-access-point"
   }
+}
+
+resource "aws_efs_mount_target" "module" {
+  for_each = { for fs in var.names : fs.name => fs }
+
+  file_system_id  = aws_efs_file_system.module[each.key].id
+  subnet_id       = var.subnet_id
+  security_groups = each.value.security_groups
 }

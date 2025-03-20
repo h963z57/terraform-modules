@@ -1,7 +1,7 @@
 output "efs_file_system_ids" {
-  value = { for fs_name, fs in aws_efs_file_system.module : fs_name => fs.id }
+  value = { for fs in aws_efs_file_system.module : fs.id => fs.arn }
 }
 
 output "efs_mount_target_ids" {
-  value = { for mt_name, mt in aws_efs_mount_target.module : mt_name => mt.id }
+  value = { for mt in aws_efs_mount_target.module : mt.id => mt.file_system_id }
 }

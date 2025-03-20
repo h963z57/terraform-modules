@@ -3,6 +3,7 @@
 ## [5.0.0] - 20-Mar-2025
 ### Changed
 - AWS_EC2 reworked
+- AWS_EFS reworked
 
 ## [4.1.0] - 09-Mar-2025
 ### Added
