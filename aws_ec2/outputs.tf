@@ -1,7 +1,7 @@
 output "ec2_instances" {
   value = {
     for instance in aws_instance.module :
-    instance.id => {
+    replace(instance.tags["Name"], "${var.env}-", "") => {
       ec2_id       = instance.id
       name         = replace(instance.tags["Name"], "${var.env}-", "")
       private_ipv4 = instance.private_ip

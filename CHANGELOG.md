@@ -1,5 +1,9 @@
 # Changelog
 
+## [5.1.0] - 20-Mar-2025
+### Changed
+- ec2 output (added name)
+
 ## [5.0.0] - 20-Mar-2025
 ### Changed
 - AWS_EC2 reworked
