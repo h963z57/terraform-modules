@@ -1,5 +1,9 @@
 # Changelog
 
+## [5.2.0] - 22-Mar-2025
+### Changed
+- DigitalOcean droplets reworked
+
 ## [5.1.0] - 22-Mar-2025
 ### Changed
 - ec2 output (added name)

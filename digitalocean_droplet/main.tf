@@ -7,11 +7,12 @@ terraform {
 }
 
 resource "digitalocean_droplet" "node" {
-  for_each = var.names
+  for_each = { for n in var.names : n.name => n }
+
   ipv6     = true
-  image    = var.image
-  name     = "${var.env}-${each.value}"
-  region   = var.region
-  size     = var.size
+  image    = each.value.image
+  name     = "${var.env}-${each.value.name}"
+  region   = each.value.region
+  size     = each.value.size
   ssh_keys = var.ssh_keys
 }

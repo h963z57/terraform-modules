@@ -1,8 +1,3 @@
-variable "names" {
-  type    = set(string)
-  default = []
-}
-
 variable "env" {
   type    = string
   default = "develop"
@@ -24,6 +19,14 @@ variable "size" {
 }
 
 variable "ssh_keys" {
-  type    = list(any)
-  default = []
+  type = list(string)
+}
+
+variable "names" {
+  type = list(object({
+    name   = string
+    size   = string
+    region = string
+    image  = string
+  }))
 }
