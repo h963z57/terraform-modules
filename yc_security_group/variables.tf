@@ -20,12 +20,12 @@ variable "network" {
 
 variable "allow_ingress_ports_tcp" {
   type    = list(any)
-  default = ["-1"]
+  default = []
 }
 
 variable "allow_ingress_ports_udp" {
   type    = list(any)
-  default = ["-1"]
+  default = []
 }
 
 variable "allow_egress_ports" {
