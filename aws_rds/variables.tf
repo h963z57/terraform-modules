@@ -45,7 +45,7 @@ variable "allocated_storage" {
 
 variable "storage_type" {
   type    = string
-  default = "standard"
+  default = "gp3"
 }
 
 variable "engine" {

@@ -1,5 +1,10 @@
 # Changelog
 
+## [5.3.0] - 01-Feb-2026
+### Changed
+- default rds disk type to gp3
+- changed depricated params
+
 ## [5.2.0] - 22-Mar-2025
 ### Changed
 - DigitalOcean droplets reworked

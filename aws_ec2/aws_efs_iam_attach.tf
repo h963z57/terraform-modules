@@ -36,7 +36,7 @@ resource "aws_iam_policy" "efs_access_policy" {
           "elasticfilesystem:DescribeFileSystems",
           "elasticfilesystem:DescribeMountTargets"
         ],
-        Resource = "arn:aws:elasticfilesystem:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:file-system/${efs_id}"
+        Resource = "arn:aws:elasticfilesystem:${data.aws_region.current.region}:${data.aws_caller_identity.current.account_id}:file-system/${efs_id}"
       }
     ]
   })
