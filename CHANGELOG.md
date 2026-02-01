@@ -5,6 +5,10 @@
 - default rds disk type to gp3
 - changed depricated params
 
+## [5.2.1] - 22-Jan-2025
+### Changed
+- fix yc_sg name forman
+
 ## [5.2.0] - 22-Mar-2025
 ### Changed
 - DigitalOcean droplets reworked

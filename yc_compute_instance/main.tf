@@ -42,7 +42,7 @@ resource "yandex_compute_instance" "vm-1" {
     subnet_id          = var.vpc_id
     nat                = true
     nat_ip_address     = var.vpc_static_address
-    security_group_ids = [var.security_group_ids]
+    security_group_ids = var.security_group_ids
   }
 
   metadata = {
