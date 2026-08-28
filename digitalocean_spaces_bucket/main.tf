@@ -7,24 +7,31 @@ terraform {
 }
 
 resource "digitalocean_spaces_bucket" "main" {
-  for_each = toset(var.bucket_names)
+  for_each = {
+    for bucket in var.bucket :
+    bucket.name => bucket
+  }
 
-  name   = "${var.prefix}-${var.env}-${each.value}"
+  name   = "${var.prefix}-${var.env}-${each.value.name}"
   region = var.region
 
-  acl           = var.acl
-  force_destroy = var.force_destroy
+  acl           = each.value.acl
+  force_destroy = each.value.force_destroy
 
   versioning {
-    enabled = var.versioning
+    enabled = each.value.versioning
   }
 
   #
-  # Current versions
+  # Current version expiration
   #
 
   dynamic "lifecycle_rule" {
-    for_each = var.days_lifecycle_rule_expiration_current_version != null ? [1] : []
+    for_each = (
+      each.value.days_lifecycle_rule_expiration_current_version != null
+      ? [1]
+      : []
+    )
 
     content {
       id      = "expiration-current-version"
@@ -32,17 +39,21 @@ resource "digitalocean_spaces_bucket" "main" {
       enabled = true
 
       expiration {
-        days = var.days_lifecycle_rule_expiration_current_version
+        days = each.value.days_lifecycle_rule_expiration_current_version
       }
     }
   }
 
   #
-  # Non-current versions
+  # Non-current version expiration
   #
 
   dynamic "lifecycle_rule" {
-    for_each = var.days_lifecycle_rule_expiration_noncurrent_version != null ? [1] : []
+    for_each = (
+      each.value.days_lifecycle_rule_expiration_noncurrent_version != null
+      ? [1]
+      : []
+    )
 
     content {
       id      = "expiration-noncurrent-version"
@@ -50,19 +61,23 @@ resource "digitalocean_spaces_bucket" "main" {
       enabled = true
 
       noncurrent_version_expiration {
-        days = var.days_lifecycle_rule_expiration_noncurrent_version
+        days = each.value.days_lifecycle_rule_expiration_noncurrent_version
       }
     }
   }
 
+  #
+  # CORS
+  #
+
   dynamic "cors_rule" {
-    for_each = var.enable_cors ? [1] : []
+    for_each = each.value.cors != null ? [each.value.cors] : []
 
     content {
-      allowed_headers = var.cors_allowed_headers
-      allowed_methods = var.cors_allowed_methods
-      allowed_origins = var.cors_allowed_origins
-      max_age_seconds = var.cors_max_age_seconds
+      allowed_headers = cors_rule.value.allowed_headers
+      allowed_methods = cors_rule.value.allowed_methods
+      allowed_origins = cors_rule.value.allowed_origins
+      max_age_seconds = cors_rule.value.max_age_seconds
     }
   }
 }

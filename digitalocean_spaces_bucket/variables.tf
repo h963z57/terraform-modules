@@ -4,13 +4,8 @@ variable "env" {
 }
 
 variable "prefix" {
-  description = "Prefix for bucket names"
+  description = "Prefix for bucket name"
   type        = string
-}
-
-variable "bucket_names" {
-  description = "List of bucket names"
-  type        = list(string)
 }
 
 variable "region" {
@@ -19,99 +14,60 @@ variable "region" {
   default     = "fra1"
 }
 
-variable "acl" {
-  description = "Bucket ACL: private or public-read"
-  type        = string
-  default     = "private"
+variable "bucket" {
+  description = "DigitalOcean Spaces buckets configuration"
+
+  type = list(object({
+    name          = string
+    acl           = optional(string, "private")
+    force_destroy = optional(bool, false)
+    versioning    = optional(bool, false)
+
+    days_lifecycle_rule_expiration_current_version    = optional(number)
+    days_lifecycle_rule_expiration_noncurrent_version = optional(number)
+
+    cors = optional(object({
+      allowed_headers = optional(list(string), ["*"])
+      allowed_methods = optional(list(string), ["GET"])
+      allowed_origins = optional(list(string), ["*"])
+      max_age_seconds = optional(number, 3600)
+    }))
+  }))
 
   validation {
-    condition = contains([
-      "private",
-      "public-read"
-    ], var.acl)
+    condition = alltrue([
+      for bucket in var.bucket :
+      contains(["private", "public-read"], bucket.acl)
+    ])
 
-    error_message = "acl must be private or public-read"
+    error_message = "bucket.acl must be private or public-read."
   }
-}
-
-variable "force_destroy" {
-  description = "Delete bucket even if it contains objects"
-  type        = bool
-  default     = false
-}
-
-variable "versioning" {
-  description = "Enable bucket versioning"
-  type        = bool
-  default     = false
-}
-
-#
-# Current object expiration
-#
-
-variable "days_lifecycle_rule_expiration_current_version" {
-  description = "Delete current object versions after N days. null disables the rule."
-  type        = number
-  default     = null
 
   validation {
-    condition = (
-      var.days_lifecycle_rule_expiration_current_version == null ||
-      var.days_lifecycle_rule_expiration_current_version > 0
-    )
-    error_message = "Expiration days must be greater than 0."
+    condition = alltrue([
+      for bucket in var.bucket :
+      bucket.days_lifecycle_rule_expiration_current_version == null ||
+      bucket.days_lifecycle_rule_expiration_current_version > 0
+    ])
+
+    error_message = "days_lifecycle_rule_expiration_current_version must be greater than 0."
   }
-}
-
-#
-# Non-current object expiration
-#
-
-variable "days_lifecycle_rule_expiration_noncurrent_version" {
-  description = "Delete non-current object versions after N days. null disables the rule."
-  type        = number
-  default     = null
 
   validation {
-    condition = (
-      var.days_lifecycle_rule_expiration_noncurrent_version == null ||
-      var.days_lifecycle_rule_expiration_noncurrent_version > 0
-    )
-    error_message = "Expiration days must be greater than 0."
+    condition = alltrue([
+      for bucket in var.bucket :
+      bucket.days_lifecycle_rule_expiration_noncurrent_version == null ||
+      bucket.days_lifecycle_rule_expiration_noncurrent_version > 0
+    ])
+
+    error_message = "days_lifecycle_rule_expiration_noncurrent_version must be greater than 0."
   }
-}
 
-#
-# CORS
-#
+  validation {
+    condition = length(var.bucket) == length(distinct([
+      for bucket in var.bucket : bucket.name
+    ]))
 
-variable "enable_cors" {
-  description = "Enable CORS configuration"
-  type        = bool
-  default     = false
-}
-
-variable "cors_allowed_headers" {
-  description = "Allowed CORS headers"
-  type        = list(string)
-  default     = ["*"]
-}
-
-variable "cors_allowed_methods" {
-  description = "Allowed CORS methods"
-  type        = list(string)
-  default     = ["GET"]
-}
-
-variable "cors_allowed_origins" {
-  description = "Allowed CORS origins"
-  type        = list(string)
-  default     = ["*"]
-}
-
-variable "cors_max_age_seconds" {
-  description = "CORS preflight cache lifetime"
-  type        = number
-  default     = 3600
+    error_message = "Bucket names must be unique."
+  }
 }
