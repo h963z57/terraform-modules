@@ -1,5 +1,9 @@
 # Changelog
 
+## [6.0.0] - 28-Aug-2026
+### Added
+- digitalocean_spaces_bucket
+
 ## [5.3.0] - 01-Feb-2026
 ### Changed
 - default rds disk type to gp3
