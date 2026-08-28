@@ -23,6 +23,18 @@ resource "digitalocean_spaces_bucket" "main" {
   }
 
   #
+  # Always abort incomplete multipart uploads after 7 days
+  #
+
+  lifecycle_rule {
+    id      = "abort-incomplete-multipart-uploads"
+    prefix  = ""
+    enabled = true
+
+    abort_incomplete_multipart_upload_days = 7
+  }
+
+  #
   # Current version expiration
   #
 
