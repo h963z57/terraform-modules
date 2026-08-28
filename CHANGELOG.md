@@ -1,5 +1,9 @@
 # Changelog
 
+## [6.0.1] - 28-Aug-2026
+### Changed
+- move to archive yc modules
+
 ## [6.0.0] - 28-Aug-2026
 ### Added
 - digitalocean_spaces_bucket
