@@ -19,11 +19,15 @@ resource "digitalocean_spaces_bucket" "main" {
     enabled = var.versioning
   }
 
+  #
+  # Current versions
+  #
+
   dynamic "lifecycle_rule" {
-    for_each = var.status_lifecycle_rule_expiration_current_version ? [1] : []
+    for_each = var.days_lifecycle_rule_expiration_current_version != null ? [1] : []
 
     content {
-      id      = "Expiration current version"
+      id      = "expiration-current-version"
       prefix  = ""
       enabled = true
 
@@ -33,11 +37,15 @@ resource "digitalocean_spaces_bucket" "main" {
     }
   }
 
+  #
+  # Non-current versions
+  #
+
   dynamic "lifecycle_rule" {
-    for_each = var.status_lifecycle_rule_expiration_noncurrent_version ? [1] : []
+    for_each = var.days_lifecycle_rule_expiration_noncurrent_version != null ? [1] : []
 
     content {
-      id      = "Expiration noncurrent version"
+      id      = "expiration-noncurrent-version"
       prefix  = ""
       enabled = true
 

@@ -17,14 +17,10 @@ module "spaces_bucket" {
 
     # versioning = false
 
-    # status_lifecycle_rule_expiration_current_version = false
     # days_lifecycle_rule_expiration_current_version   = 360
-
-    # status_lifecycle_rule_expiration_noncurrent_version = false
     # days_lifecycle_rule_expiration_noncurrent_version   = 360
-
+    
     # enable_cors = false
-
     # cors_allowed_headers = ["*"]
     # cors_allowed_methods = ["GET"]
     # cors_allowed_origins = [

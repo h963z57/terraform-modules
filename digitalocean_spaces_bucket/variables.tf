@@ -50,32 +50,36 @@ variable "versioning" {
 # Current object expiration
 #
 
-variable "status_lifecycle_rule_expiration_current_version" {
-  description = "Enable expiration of current object versions"
-  type        = bool
-  default     = false
-}
-
 variable "days_lifecycle_rule_expiration_current_version" {
-  description = "Delete current objects after N days"
+  description = "Delete current object versions after N days. null disables the rule."
   type        = number
-  default     = 360
+  default     = null
+
+  validation {
+    condition = (
+      var.days_lifecycle_rule_expiration_current_version == null ||
+      var.days_lifecycle_rule_expiration_current_version > 0
+    )
+    error_message = "Expiration days must be greater than 0."
+  }
 }
 
 #
 # Non-current object expiration
 #
 
-variable "status_lifecycle_rule_expiration_noncurrent_version" {
-  description = "Enable expiration of non-current object versions"
-  type        = bool
-  default     = false
-}
-
 variable "days_lifecycle_rule_expiration_noncurrent_version" {
-  description = "Delete non-current versions after N days"
+  description = "Delete non-current object versions after N days. null disables the rule."
   type        = number
-  default     = 360
+  default     = null
+
+  validation {
+    condition = (
+      var.days_lifecycle_rule_expiration_noncurrent_version == null ||
+      var.days_lifecycle_rule_expiration_noncurrent_version > 0
+    )
+    error_message = "Expiration days must be greater than 0."
+  }
 }
 
 #
