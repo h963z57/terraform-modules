@@ -1,5 +1,9 @@
 # Changelog
 
+## [7.0.0] - 16-Now-2026
+### Added
+- cloudflare
+
 ## [6.0.1] - 28-Aug-2026
 ### Changed
 - move to archive yc modules
