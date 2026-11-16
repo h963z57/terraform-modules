@@ -1,4 +1,3 @@
-
 output "dns_records" {
   description = "Created Cloudflare DNS records"
 

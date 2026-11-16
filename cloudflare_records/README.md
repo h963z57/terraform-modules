@@ -8,24 +8,46 @@ module "cloudflare" {
   cloudflare_zone_id = var.cloudflare_zone_id
 
   records = {
-    type = "A" #AAAA CNAME
+    my_project = {
+      type = "A" #AAAA CNAME
 
-    # For type CNAME only one target
-    targets = {
-      lb-1 = "example.com" 
-      # lb-2 = "192.0.2.20"
+      # For type CNAME only one target
+      targets = {
+        lb-1 = "example.com" 
+        # lb-2 = "192.0.2.20"
+      }
+
+
+      domains = [
+        # "a.example.com",
+        "b.example.com",
+        "c.example.com"
+      ]
+
+      proxied_domains = [
+        # "a.example.com"
+      ]
+    },
+    my_project = {
+      type = "AAAA"
+
+      # For type CNAME only one target
+      targets = {
+        lb-1 = "192.0.2.21" 
+        lb-2 = "192.0.2.20"
+      }
+
+
+      domains = [
+        # "a.example.com",
+        "b.example.com",
+        "c.example.com"
+      ]
+
+      proxied_domains = [
+        # "a.example.com"
+      ]
     }
-
-
-    domains = [
-      # "a.h963z57.com",
-      "b.h963z57.com",
-      "c.h963z57.com"
-    ]
-
-    proxied_domains = [
-      # "a.h963z57.com"
-    ]
   }
 }
 ```
