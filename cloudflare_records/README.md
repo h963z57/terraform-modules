@@ -1,13 +1,18 @@
+Records module Cloudflare
+============
+
+```tf
 module "cloudflare" {
-  source = "../../../../terraform-modules/cloudflare_records"
+  source = "git@github.com:h963z57/terraform-modules.git//cloudflare_records"
 
   cloudflare_zone_id = var.cloudflare_zone_id
 
   records = {
-    type = "CNAME"
+    type = "A" #AAAA CNAME
 
+    # For type CNAME only one target
     targets = {
-      lb-1 = "example.com"
+      lb-1 = "example.com" 
       # lb-2 = "192.0.2.20"
     }
 
@@ -19,7 +24,8 @@ module "cloudflare" {
     ]
 
     proxied_domains = [
-      "a.h963z57.com"
+      # "a.h963z57.com"
     ]
   }
 }
+```

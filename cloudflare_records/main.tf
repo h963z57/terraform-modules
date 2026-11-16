@@ -8,15 +8,19 @@ terraform {
 }
 
 locals {
+  all_domains = setunion(
+    toset(var.records.domains),
+    toset(var.records.proxied_domains)
+  )
+
   dns_records = {
     for pair in setproduct(
-      var.records.domains,
-      sort(keys(var.records.targets))
+      local.all_domains,
+      toset(keys(var.records.targets))
     ) :
     "${pair[0]}/${pair[1]}" => {
-      name       = pair[0]
-      target_key = pair[1]
-      content    = var.records.targets[pair[1]]
+      name    = pair[0]
+      content = var.records.targets[pair[1]]
 
       proxied = contains(
         var.records.proxied_domains,
@@ -37,15 +41,4 @@ resource "cloudflare_dns_record" "records" {
 
   proxied = each.value.proxied
   ttl     = var.records.ttl
-
-  lifecycle {
-    precondition {
-      condition = (
-        var.records.type != "CNAME" ||
-        length(var.records.targets) == 1
-      )
-
-      error_message = "Multiple CNAME targets for the same domain are not supported. Use Cloudflare Load Balancing or A/AAAA records."
-    }
-  }
 }

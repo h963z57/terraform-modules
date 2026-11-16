@@ -1,13 +1,16 @@
 
 variable "cloudflare_zone_id" {
-  type = string
+  description = "Cloudflare Zone ID"
+  type        = string
 }
 
 variable "records" {
+  description = "Cloudflare DNS records configuration"
+
   type = object({
     type            = string
     targets         = map(string)
-    domains         = list(string)
+    domains         = optional(list(string), [])
     proxied_domains = optional(list(string), [])
     ttl             = optional(number, 1)
   })
@@ -23,17 +26,14 @@ variable "records" {
   }
 
   validation {
-    condition = length(distinct(var.records.domains)) == length(var.records.domains)
-    error_message = "Domains must be unique."
-  }
+    condition = length(
+      setintersection(
+        toset(var.records.domains),
+        toset(var.records.proxied_domains)
+      )
+    ) == 0
 
-  validation {
-    condition = length(setsubtract(
-      toset(var.records.proxied_domains),
-      toset(var.records.domains)
-    )) == 0
-
-    error_message = "proxied_domains must contain only domains from domains."
+    error_message = "domains and proxied_domains must not contain the same domain."
   }
 
   validation {
@@ -42,6 +42,6 @@ variable "records" {
       length(var.records.targets) == 1
     )
 
-    error_message = "Only one CNAME target per domain is permitted."
+    error_message = "Multiple CNAME targets for the same domain are not supported."
   }
 }
