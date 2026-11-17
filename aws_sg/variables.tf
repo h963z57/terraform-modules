@@ -46,7 +46,7 @@ variable "ingress_rules_advanced" {
     description    = string
     v4_cidr_blocks = list(string)
     v6_cidr_blocks = list(string)
-    port           = number
+    ports          = list(number)
   }))
   default = [
     # {

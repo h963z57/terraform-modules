@@ -16,7 +16,7 @@ module "sg" {
   #     description = "Auto generated rule by terraform (advanced mode)"
   #     v4_cidr_blocks = ["10.0.0.0/24"]
   #     v6_cidr_blocks = []
-  #     port = "9100"
+  #     ports = ["9100"]
   #   }
   # ]
   # egress_rules_advanced = [

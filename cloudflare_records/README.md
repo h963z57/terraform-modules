@@ -9,7 +9,7 @@ module "cloudflare" {
 
   records = {
     my_project = {
-      type = "A" #AAAA CNAME
+      type = "CNAME" #only for CNAME
 
       # For type CNAME only one target
       targets = {
@@ -29,12 +29,11 @@ module "cloudflare" {
       ]
     },
     my_project = {
-      type = "AAAA"
 
       # For type CNAME only one target
       targets = {
-        lb-1 = "192.0.2.21" 
-        lb-2 = "192.0.2.20"
+        lb-1 = "<ipv4>" 
+        lb-2 = "<ipv6>"
       }
 
 

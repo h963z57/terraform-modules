@@ -1,8 +1,10 @@
 # Changelog
 
-## [7.0.0] - 16-Now-2026
+## [7.0.0] - 17-Now-2026
 ### Added
 - cloudflare
+### Changed
+- aws_sg - can user portS in ingress_rules_advanced
 
 ## [6.0.1] - 28-Aug-2026
 ### Changed

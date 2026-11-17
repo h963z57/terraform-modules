@@ -53,7 +53,18 @@ resource "aws_security_group" "module" {
   #============== Advanced rules IPv4 =================
 
   dynamic "ingress" {
-    for_each = var.ingress_rules_advanced
+    for_each = flatten([
+      for rule in var.ingress_rules_advanced : [
+        for port in rule.ports : {
+          protocol       = rule.protocol
+          description    = rule.description
+          v4_cidr_blocks = rule.v4_cidr_blocks
+          v6_cidr_blocks = rule.v6_cidr_blocks
+          port           = port
+        }
+      ]
+    ])
+
     content {
       protocol         = ingress.value.protocol
       description      = ingress.value.description
