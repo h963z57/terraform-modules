@@ -7,7 +7,6 @@ terraform {
   }
 }
 
-
 locals {
   dns_records_list = flatten([
     for group_name, group in var.records : [
@@ -20,8 +19,12 @@ locals {
       ) : {
         key     = "${group_name}/${pair[0]}/${pair[1]}"
         name    = pair[0]
-        type    = group.type
         content = group.targets[pair[1]]
+
+        type = group.type == "CNAME" ? "CNAME" : (
+          strcontains(group.targets[pair[1]], ":") ? "AAAA" : "A"
+        )
+
         proxied = contains(group.proxied_domains, pair[0])
         ttl     = group.ttl
       }

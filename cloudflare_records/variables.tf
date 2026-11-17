@@ -8,7 +8,7 @@ variable "records" {
   description = "Cloudflare DNS record groups"
 
   type = map(object({
-    type            = string
+    type            = optional(string)
     targets         = map(string)
     domains         = optional(list(string), [])
     proxied_domains = optional(list(string), [])
@@ -18,7 +18,7 @@ variable "records" {
   validation {
     condition = alltrue([
       for r in values(var.records) :
-      contains(["A", "AAAA", "CNAME"], r.type)
+      r.type == null || contains(["A", "AAAA", "CNAME"], r.type)
     ])
     error_message = "Supported types: A, AAAA, CNAME."
   }
@@ -48,5 +48,18 @@ variable "records" {
       r.type != "CNAME" || length(r.targets) == 1
     ])
     error_message = "CNAME groups must contain exactly one target."
+  }
+
+  validation {
+    condition = alltrue(flatten([
+      for r in values(var.records) : [
+        for target in values(r.targets) :
+        r.type == "CNAME" || can(cidrhost(
+          "${target}/${strcontains(target, ":") ? 128 : 32}",
+          0
+        ))
+      ]
+    ]))
+    error_message = "A/AAAA targets must contain valid IPv4 or IPv6 addresses."
   }
 }
